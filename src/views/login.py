@@ -9,7 +9,8 @@ root =  file.parent.parent  # Importações relativas
 
 sys.path.append(str(root))
 
-from models.Blogin import check_credentials
+from models.Blogin import check_email
+from models.Blogin import check_senha
 
 
 def login(page: ft.Page, registar):
@@ -21,14 +22,18 @@ def login(page: ft.Page, registar):
         email = email_input.value
         senha = senha_input.value
         
-        if check_credentials(email, senha):
-            # Substituir a mensagem de erro por uma de sucesso
-            error_message.value = f"Bem-vindo, {email}!"
-            error_message.color = ft.colors.GREEN  # Mudar a cor para verde
+        if not email or not senha:  # Verificação de campos vazios
+            error_message.value = "Por favor, preencha todos os campos!"
+            error_message.color = ft.colors.RED
+        elif not check_email(email):  # Verificação se o email é válido
+            error_message.value = "Email não encontrado!"
+            error_message.color = ft.colors.RED
+        elif not check_senha(email, senha):  # Verificação se a senha está correta
+            error_message.value = "Senha incorreta!"
+            error_message.color = ft.colors.RED
         else:
-            # Caso contrário, mostrar mensagem de erro
-            error_message.value = "Usuário ou senha inválidos!"
-            error_message.color = ft.colors.RED  # Cor de erro em vermelho
+            error_message.value = f"Bem-vindo, {email}!"
+            error_message.color = ft.colors.GREEN
         
         # Atualiza a página para refletir as mudanças
         page.update()
