@@ -12,5 +12,8 @@ sys.path.append(str(root))
 USER_CREDENTIALS = {"usuario": "senha123"}
 
 
-def check_credentials(email, senha):
+def check_email(email): #Verifica se o email existe
+    return email in USER_CREDENTIALS
+
+def check_senha(email, senha): #Verifica se a senha corresponde ao email informado
     return USER_CREDENTIALS.get(email) == senha
