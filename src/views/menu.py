@@ -2,18 +2,20 @@ import flet as ft
 
 def menu(page: ft.Page):
     # Define o título da página
-    page.title = "Exemplo de NavigationBar"
+    page.title = "PMGAS"
     
     # Cria a barra de navegação personalizada
     navigation_bar = ft.NavigationBar(
         destinations=[
-            ft.NavigationBarDestination(icon=ft.icons.EXPLORE, label="Explorar"),
-            ft.NavigationBarDestination(icon=ft.icons.COMMUTE, label="Comutar"),
+            ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio"),
+            ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros"),
             ft.NavigationBarDestination(
-                icon=ft.icons.BOOKMARK_BORDER,
+                icon=ft.icons.BAR_CHART,
                 selected_icon=ft.icons.BOOKMARK,
-                label="Favoritos",
+                label="Gráficos",
             ),
+            ft.NavigationBarDestination(icon=ft.icons.PERSON_ROUNDED, label="Perfil"),
+            ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Config"),
         ]
     )
     
@@ -34,8 +36,15 @@ def menu(page: ft.Page):
                 bgcolor=ft.colors.WHITE,
                 border_radius=10,
                 padding=ft.padding.all(10),
-                width=1000,  # Largura do container
-                height=500,  # Altura do container
+                width=800,  # Largura do container
+                height=300,  # Altura do container
+                content=ft.Column(
+                    controls=[
+                        ft.Text(
+                            value="HELLO"
+                        )
+                    ]
+                )
             ),
             # Row com Containers centralizados
             ft.Row(
@@ -45,14 +54,14 @@ def menu(page: ft.Page):
                         border_radius=10,
                         padding=ft.padding.all(10),
                         width=400,  # Largura do container
-                        height=100,  # Altura do container
+                        height=200,  # Altura do container
                     ),
                     ft.Container(
                         bgcolor=ft.colors.WHITE,
                         border_radius=10,
                         padding=ft.padding.all(10),
                         width=400,  # Largura do container
-                        height=100,  # Altura do container
+                        height=200,  # Altura do container
                     ),
                 ]
             )
