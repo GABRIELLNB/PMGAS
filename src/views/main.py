@@ -25,9 +25,9 @@ def main(page: ft.Page):
     page.bgcolor = AZ
 
     # Função para alternar para a tela de menu
-    def menu(e: ft.ControlEvent):
+    def abrir_menu(e: ft.ControlEvent):
         page.controls.clear()
-        page.add(menu(page, menu))
+        page.add(menu(page))
         
     # Função para alternar para a tela de login
     def logar(e: ft.ControlEvent):
