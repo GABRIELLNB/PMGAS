@@ -1,6 +1,7 @@
 import flet as ft
 from login import login
 from register import register
+from menu import menu
 import sys
 from pathlib import Path
 
@@ -23,6 +24,11 @@ def main(page: ft.Page):
     page.padding = ft.padding.all(0)
     page.bgcolor = AZ
 
+    # Função para alternar para a tela de menu
+    def menu(e: ft.ControlEvent):
+        page.controls.clear()
+        page.add(menu(page, menu))
+        
     # Função para alternar para a tela de login
     def logar(e: ft.ControlEvent):
         page.controls.clear()
