@@ -11,7 +11,7 @@ sys.path.append(str(root))
 
 from models.Blogin import check_email
 from models.Blogin import check_senha
-
+from views.menu import menu
 
 def login(page: ft.Page, registar):
     
@@ -32,8 +32,8 @@ def login(page: ft.Page, registar):
             error_message.value = "Senha incorreta!"
             error_message.color = ft.colors.RED
         else:
-            error_message.value = f"Bem-vindo, {email}!"
-            error_message.color = ft.colors.GREEN
+            page.clean() # Função para limpar a pagina anterior
+            page.add(menu(page))  # Ação para ir para a tela de registro
         
         # Atualiza a página para refletir as mudanças
         page.update()
