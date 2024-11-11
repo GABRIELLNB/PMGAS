@@ -9,13 +9,9 @@ def menu(page: ft.Page):
         destinations=[
             ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio"),
             ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros"),
-            ft.NavigationBarDestination(
-                icon=ft.icons.BAR_CHART,
-                selected_icon=ft.icons.BOOKMARK,
-                label="Gráficos",
-            ),
+            ft.NavigationBarDestination(icon=ft.icons.BAR_CHART, selected_icon=ft.icons.BOOKMARK, label="Gráficos"),
             ft.NavigationBarDestination(icon=ft.icons.PERSON_ROUNDED, label="Perfil"),
-            ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Config"),
+            ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Configurações"),
         ]
     )
     
