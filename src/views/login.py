@@ -11,7 +11,7 @@ sys.path.append(str(root))
 
 from models.Blogin import check_email
 from models.Blogin import check_senha
-from views.menu import menu
+from menu import menu
 
 def login(page: ft.Page, registar):
     
