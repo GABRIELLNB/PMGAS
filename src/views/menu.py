@@ -12,6 +12,7 @@ from configuracoes import configuracoes
 from cadastros import cadastros
 from graficos import graficos
 from perfil import perfil
+from graficostempS import graficostempS
 
 # Cria a barra de navegação personalizada
 def navigation_bar(update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content):
@@ -27,7 +28,6 @@ def navigation_bar(update_content, configuracoes_content, inicio, cadastros_cont
     )
 
 def escolher_opcao(e, update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content):
-    
     opcao = e.control.selected_index
     if opcao == 0:
         update_content(inicio_content())
@@ -64,6 +64,27 @@ def menu(page: ft.Page):
     def perfil_content():
         return perfil(page)
 
+    # Função para alterar para tela de graficos
+
+    # Função para abrir uma página flutuante
+    def abrir_graficosGS():
+        graficos = ft.AlertDialog(
+            title=ft.Text("Informações sobre gráficas", size=20, weight="bold"),
+              content=ft.Container(  
+                  width=1000,
+                  height=500,
+                content=ft.Column(
+                    controls=[
+                        ft.Text("..."),
+                        ft.ElevatedButton("Fechar", on_click=lambda e: page.graficos.close())
+                    ]
+                )
+              ),     
+            )
+        page.dialog = graficos  # Definindo o Dialog na página
+        graficos.open = True  # Abrindo o Dialog
+        page.update()  # Atualizando a página para mostrar o Dialog
+
     # Define o conteúdo da página inicial
     def inicio():
         return ft.Column(
@@ -77,7 +98,7 @@ def menu(page: ft.Page):
                 navigation_bar(update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content),
                 ft.Row(
                     alignment=ft.MainAxisAlignment.CENTER,
-                    controls=[
+                    controls=[  
                         ft.Container(
                             alignment=ft.alignment.top_center,
                             bgcolor=ft.colors.WHITE,
@@ -102,19 +123,27 @@ def menu(page: ft.Page):
                     alignment=ft.MainAxisAlignment.CENTER,
                     controls=[
                         ft.Container(
-                            bgcolor=ft.colors.WHITE,
-                            border_radius=10,
+                            content=ft.Text("Gráficos"),
                             padding=ft.padding.all(10),
+                            alignment=ft.alignment.center,
+                            bgcolor=ft.colors.WHITE,
                             width=400,
                             height=200,
+                            border_radius=10,
+                            ink=True,
+                            on_click =lambda event: ir_graficosTS(event,page)
                         ),
                         ft.Container(
-                            bgcolor=ft.colors.WHITE,
-                            border_radius=10,
+                            content=ft.Text("Aterros Ronald"),
                             padding=ft.padding.all(10),
+                            alignment=ft.alignment.center,
+                            bgcolor=ft.colors.WHITE,
                             width=400,
                             height=200,
-                        ),
+                            border_radius=10,
+                            ink=True,
+                            on_click=lambda e: abrir_graficosGS() 
+                        )
                     ]
                 )
             ]
