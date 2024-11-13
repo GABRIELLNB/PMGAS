@@ -33,7 +33,7 @@ def login(page: ft.Page, registar):
             error_message.color = ft.colors.RED
         else:
             page.clean() # Função para limpar a pagina anterior
-            page.add(menu(page))  # Ação para ir para a tela de registro
+            page.add(menu(page))  # Ação para ir para a tela de menu
         
         # Atualiza a página para refletir as mudanças
         page.update()
