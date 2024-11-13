@@ -64,7 +64,7 @@ def menu(page: ft.Page):
     def perfil_content():
         return perfil(page)
 
-    # Função para alterar para tela de graficos
+    # Função para alterar para tela graficos
 
     # Função para abrir uma página flutuante
     def abrir_graficosGS():
