@@ -2,6 +2,8 @@ import sys
 from pathlib import Path
 import pandas as pd
 
+#Baixar o pip install openpyxl
+
 file = Path(__file__).resolve()
 parent = file.parent
 root =  file.parent.parent  # Importações relativas
