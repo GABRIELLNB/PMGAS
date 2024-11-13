@@ -29,11 +29,6 @@ def navigation_bar(update_content, configuracoes_content, confg, cadastros_conte
 def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content):
     opcao = e.control.selected_index
     
-    
-    
-#!!!!!!FALTA COLOCAR A OPÇÃO DE SELECIONAR INICIO/MENU!!!!!!!!!!!!!
-
-
     if opcao == 1:
         update_content(cadastros_content())  # Exibe a página de cadastros
     elif opcao == 2:
@@ -45,7 +40,9 @@ def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_co
 
 # Função de configuração
 def configuracoes(page: ft.Page):
-    
+    a1 = "#C4F7F8"
+    a2 = "#04282D"
+
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
@@ -65,19 +62,172 @@ def configuracoes(page: ft.Page):
         return perfil(page)  # Página de perfil
 
     def confg():
-        # Corrigindo o uso de navigation_bar e a estrutura da coluna
         return ft.Column(
-            controls=[  
+            
+            alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
                 navigation_bar(update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content),  # Barra de navegação
                 ft.Container(
                     alignment=ft.alignment.top_center,  # Alinha o container ao topo central
-                    bgcolor=ft.colors.BLACK,
+                    bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
                     width=1000,  # Largura do container
-                    height=500,
-                )
+                    height=600,
+                    content=ft.Column(
+                        spacing=20,
+                        alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
+                        controls=[
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                spacing=50,
+                                controls=[
+                                    ft.Container(
+                                        bgcolor=a1,
+                                        border_radius=50,  # Borda arredondada para formar o círculo
+                                        width=100,  # Largura do círculo
+                                        height=100,  # Altura do círculo
+                                    ),
+                                    ft.Container(
+                                        alignment=ft.alignment.top_center,
+                                        bgcolor=a1,
+                                        border_radius=50,  # Borda arredondada para formar o círculo
+                                        width=100,  # Largura do círculo
+                                        height=100,  # Altura do círculo
+                                    ),
+                                ]
+                            ),
+        
+                            # Agora a linha com o texto "PMGAS" abaixo dos containers circulares
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                spacing=70,
+                                controls=[
+                                    ft.Text(value='PMGAS', weight='bold', size=20, color=a2),
+                                    ft.Text(value='PMGAS', weight='bold', size=20, color=a2),
+                                ]
+                            ),
+                            # Aqui estamos centralizando o Container com a palavra 'HELLO'
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    spacing=10,
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ft.Container(
+                                bgcolor=a1,  # Cor de fundo
+                                border_radius=15,  # Define borda arredondada para o container
+                                width=1000,  # Largura do container
+                                height=40,  # Altura do container
+                                padding=ft.padding.all(10),
+                                alignment=ft.alignment.top_left,
+                                content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
+                                    controls=[
+                                        ft.Text(
+                                            value='Notificações',
+                                            weight='bold',
+                                            size=20,
+                                            color=a2
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ]
+                    ),
+                ),
             ]
         )
-
     return confg()
