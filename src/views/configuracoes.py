@@ -12,9 +12,15 @@ from cadastros import cadastros
 from graficos import graficos
 from perfil import perfil
 
+a1 = "#7BD8D9"
+a2 = "#04282D"
+b = "#FFFFFF"
+
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content):
+    
     return ft.NavigationBar(
+        bgcolor=b,
         destinations=[
             ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio"),
             ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros"),
@@ -40,9 +46,7 @@ def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_co
 
 # Função de configuração
 def configuracoes(page: ft.Page):
-    a1 = "#7BD8D9"
-    a2 = "#04282D"
-    b = "#FFFFFF"
+
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
