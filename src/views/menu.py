@@ -14,9 +14,13 @@ from graficos import graficos
 from perfil import perfil
 from graficostempS import graficostempS
 
+a1 = "#7BD8D9",
+a2 = "#04282D",
+b = "#FFFFFF"
 # Cria a barra de navegação personalizada
 def navigation_bar(update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content):
     return ft.NavigationBar(
+        bgcolor=b,
         destinations=[
             ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio"),
             ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros"),
@@ -121,8 +125,8 @@ def menu(page: ft.Page):
                             bgcolor=ft.colors.WHITE,
                             border_radius=10,
                             padding=ft.padding.all(10),
-                            width=1000,
-                            height=500,
+                            width=800,
+                            height=350,
                             content=ft.Column(
                                 controls=[
                                     ft.Text(
