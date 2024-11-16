@@ -47,7 +47,6 @@ def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_co
 # Função de configuração
 def configuracoes(page: ft.Page):
 
-
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
@@ -92,17 +91,20 @@ def configuracoes(page: ft.Page):
                                         border_radius=50,  # Borda arredondada para formar o círculo
                                         width=100,  # Largura do círculo
                                         height=100,  # Altura do círculo
+                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
                                         content=ft.Icon(
-                                            ft.icons.CLOUD,  # Ícone de notificação
-                                            size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                            color=b  # Cor do ícone
-                                        ),
+                                        ft.icons.CLOUD,  # Ícone de notificação
+                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                                color=b  # Cor do ícone
+                                            ),
+                                        
                                     ),
                                     ft.Container(
                                         bgcolor=a1,
                                         border_radius=50,  # Borda arredondada para formar o círculo
                                         width=100,  # Largura do círculo
                                         height=100,  # Altura do círculo
+                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
                                         content=ft.Icon(
                                             ft.icons.PAID,  # Ícone de notificação
                                             size=40,  # Tamanho do ícone ajustado para maior visibilidade
