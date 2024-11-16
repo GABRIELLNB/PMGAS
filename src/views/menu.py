@@ -69,7 +69,7 @@ def menu(page: ft.Page):
         return perfil(page)
 
     # Função para abrir a página flutuante de gráficos
-    def abrir_graficosGS():
+    def abrir_graficosTP():
         graficos_dialog = ft.AlertDialog(
             title=ft.Text("Informações sobre Gráficos", size=20, weight="bold"),
             content=ft.Container(  
@@ -88,7 +88,7 @@ def menu(page: ft.Page):
         page.update()  # Atualizando a página para mostrar o Dialog
 
     # Função para abrir a página flutuante de Aterros Ronald
-    def abrir_aterros_ronald():
+    def abrir_GSgraficos():
         aterros_dialog = ft.AlertDialog(
             title=ft.Text("Informações sobre Aterros Ronald", size=20, weight="bold"),
             content=ft.Container(  
@@ -102,6 +102,7 @@ def menu(page: ft.Page):
                 )
             )
         )
+        
         page.dialog = aterros_dialog  # Definindo o Dialog na página
         aterros_dialog.open = True  # Abrindo o Dialog
         page.update()  # Atualizando a página para mostrar o Dialog
@@ -152,7 +153,7 @@ def menu(page: ft.Page):
                             height=200,
                             border_radius=10,
                             ink=True,
-                            on_click=lambda e: abrir_graficosGS()  # Abre o Dialog de Gráficos
+                            on_click=lambda e: abrir_graficosTP()  # Abre o Dialog de Gráficos
                         ),
                         ft.Container(
                             content=ft.Text("Aterros Ronald"),
@@ -163,7 +164,7 @@ def menu(page: ft.Page):
                             height=200,
                             border_radius=10,
                             ink=True,
-                            on_click=lambda e: abrir_aterros_ronald()  # Abre o Dialog de Aterros Ronald
+                            on_click=lambda e: abrir_GSgraficos()  # Abre o Dialog de Aterros Ronald
                         )
                     ]
                 )
