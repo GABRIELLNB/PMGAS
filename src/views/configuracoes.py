@@ -8,34 +8,35 @@ parent = file.parent
 root = file.parent.parent  # Importações relativas
 sys.path.append(str(root))
 
-from cadastros import cadastros
-from graficos import graficos
-from perfil import perfil
-
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
+from sobre import sobre
+from sair import sair_da_conta
+from ajuda import ajuda
 
 # Função para a barra de navegação
-def navigation_bar(update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content):
+def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
     
     return ft.NavigationBar(
         bgcolor=b,
         destinations=[
-            ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio"),
-            ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros"),
-            ft.NavigationBarDestination(icon=ft.icons.BAR_CHART, label="Gráficos"),
-            ft.NavigationBarDestination(icon=ft.icons.PERSON_ROUNDED, label="Perfil"),
-            ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Configurações"),
+            ft.NavigationBarDestination(icon=ft.icons.HOME, label="Inicio", bgcolor=a2),
+            ft.NavigationBarDestination(icon=ft.icons.DOCUMENT_SCANNER_SHARP, label="Cadastros", bgcolor=a2),
+            ft.NavigationBarDestination(icon=ft.icons.BAR_CHART, label="Gráficos", bgcolor=a2),
+            ft.NavigationBarDestination(icon=ft.icons.PERSON_ROUNDED, label="Perfil", bgcolor=a2),
+            ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Configurações", bgcolor=a2),
         ],
-        on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content)
+        on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content)
     )
 
 # Função para decidir qual conteúdo exibir
-def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content):
+def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
     opcao = e.control.selected_index
     
-    if opcao == 1:
+    if opcao == 0:
+        update_content(menu_content())
+    elif opcao == 1:
         update_content(cadastros_content())  # Exibe a página de cadastros
     elif opcao == 2:
         update_content(graficos_content())  # Exibe a página de gráficos
@@ -46,6 +47,8 @@ def escolher_opcao(e, update_content, configuracoes_content, confg, cadastros_co
 
 # Função de configuração
 def configuracoes(page: ft.Page):
+    
+    page.title = "PMGAS - Configurações"
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
@@ -57,27 +60,35 @@ def configuracoes(page: ft.Page):
         return configuracoes(page)  # Página de configurações
 
     def cadastros_content():
+        from cadastros import cadastros
         return cadastros(page)  # Página de cadastros
 
     def graficos_content():
+        from graficos import graficos
         return graficos(page)  # Página de gráficos
 
     def perfil_content():
+        from perfil import perfil
         return perfil(page)  # Página de perfil
+    
+    def menu_content():
+        from menu import menu
+        return menu(page)
 
     def confg():
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                navigation_bar(update_content, configuracoes_content, confg, cadastros_content, graficos_content, perfil_content),  # Barra de navegação
+                navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content), 
+                ft.Container(height=20),
                 ft.Container(
                     alignment=ft.alignment.top_center,  # Alinha o container ao topo central
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
                     width=1000,  # Largura do container
-                    height=600,
+                    height=630,
                     content=ft.Column(
                         spacing=20,
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
@@ -118,7 +129,7 @@ def configuracoes(page: ft.Page):
                                 spacing=90,
                                 controls=[
                                     ft.Text(value='Armazenamento      ', weight='bold', size=20, color=a2),
-                                    ft.Text(value='   Modo Pro', weight='bold', size=20, color=a2),
+                                    ft.Text(value=' Modo Pro', weight='bold', size=20, color=a2),
                                 ]
                             ),
                             # Container com a palavra 'Notificações'
@@ -256,6 +267,7 @@ def configuracoes(page: ft.Page):
                                 width=1000,
                                 height=40,
                             ),
+                                on_click=lambda event: update_content(sobre(page)),
                            ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
@@ -273,6 +285,7 @@ def configuracoes(page: ft.Page):
                                 width=1000,
                                 height=40,
                                 ),
+                                on_click=lambda event: update_content(ajuda(page)),
                             ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
@@ -290,6 +303,7 @@ def configuracoes(page: ft.Page):
                                     width=1000,
                                     height=40,
                                 ),
+                                on_click=lambda event: update_content(sair_da_conta(page)),
                             ),
                         ]
                     ),
