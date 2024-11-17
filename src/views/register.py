@@ -1,7 +1,12 @@
 import flet as ft
-    
+
+
+a1 = "#7BD8D9"
+a2 = "#04282D"
+b = "#FFFFFF"
+
 def register(page: ft.Page, logar):
-    AZ = '#041955'
+    
     # Layout da tela de registro
     register = ft.Column(
         controls=[
@@ -35,16 +40,16 @@ def register(page: ft.Page, logar):
                             text_vertical_align=-0.30,
                             border=ft.InputBorder.UNDERLINE,
                             border_width=2,
-                            border_color=ft.colors.with_opacity(0.4, ft.colors.BLACK),
+                            border_color=ft.colors.with_opacity(0.4, a2),
                             hint_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.4, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.4, a2)
                             ),
                             text_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.9, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.9, a2)
                             )
                         ),
                         ft.TextField(
@@ -53,16 +58,16 @@ def register(page: ft.Page, logar):
                             text_vertical_align=-0.30,
                             border=ft.InputBorder.UNDERLINE,
                             border_width=2,
-                            border_color=ft.colors.with_opacity(0.4, ft.colors.BLACK),
+                            border_color=ft.colors.with_opacity(0.4, a2),
                             hint_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.4, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.4, a2)
                             ),
                             text_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.9, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.9, a2)
                             )
                         ),
                         ft.TextField(
@@ -71,16 +76,16 @@ def register(page: ft.Page, logar):
                             text_vertical_align=-0.30,
                             border=ft.InputBorder.UNDERLINE,
                             border_width=2,
-                            border_color=ft.colors.with_opacity(0.4, ft.colors.BLACK),
+                            border_color=ft.colors.with_opacity(0.4, a2),
                             hint_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.4, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.4, a2)
                             ),
                             text_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.9, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.9, a2)
                             ),
                             password=True,
                             can_reveal_password=True
@@ -88,34 +93,34 @@ def register(page: ft.Page, logar):
                         ft.TextField(
                             hint_text='CPF (apenas números)',
                             max_length=11,
-                            prefix_icon=ft.icons.CONTACT_PAGE,
+                            prefix_icon=(ft.icons.CONTACT_PAGE),
                             text_vertical_align=-0.30,
                             border=ft.InputBorder.UNDERLINE,
                             border_width=2,
-                            border_color=ft.colors.with_opacity(0.4, ft.colors.BLACK),
+                            border_color=ft.colors.with_opacity(0.4, a2),
                             hint_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.4, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.4, a2)
                             ),
                             text_style=ft.TextStyle(
                                 size=14,
                                 weight='bold',
-                                color=ft.colors.with_opacity(0.9, ft.colors.BLACK)
+                                color=ft.colors.with_opacity(0.9, a2)
                             )
                         ),
-                        # Campos adicionais podem ser adicionados aqui...
+                        
                         ft.ElevatedButton(
                             text='Registrar',
                             color=ft.colors.WHITE,
-                            bgcolor=ft.colors.BLUE_GREY_800,
+                            bgcolor=a2,
                             width=400,
                             height=40
                         ),
                         ft.Row(
                             controls=[
                                 ft.TextButton(
-                                    style=ft.ButtonStyle(color=ft.colors.BLUE_GREY_800),
+                                    style=ft.ButtonStyle(color=a2),
                                     text='Já tenho uma conta',
                                     on_click=logar  # Ação para ir para a tela de login
                                 )
