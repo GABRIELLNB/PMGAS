@@ -8,17 +8,14 @@ root = file.parent.parent  # Importações relativas
 
 sys.path.append(str(root))
 
-from configuracoes import configuracoes
-from cadastros import cadastros
-from graficos import graficos
-from perfil import perfil
 from graficostempS import graficostempS
 
 a1 = "#7BD8D9",
 a2 = "#04282D",
 b = "#FFFFFF"
+
 # Cria a barra de navegação personalizada
-def navigation_bar(update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content):
+def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content):
     return ft.NavigationBar(
         bgcolor=b,
         destinations=[
@@ -28,11 +25,12 @@ def navigation_bar(update_content, configuracoes_content, inicio, cadastros_cont
             ft.NavigationBarDestination(icon=ft.icons.PERSON_ROUNDED, label="Perfil"),
             ft.NavigationBarDestination(icon=ft.icons.SETTINGS, label="Configurações"),
         ],
-        on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content)
+        on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content)
     )
 
-def escolher_opcao(e, update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content):
+def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content):
     opcao = e.control.selected_index
+    
     if opcao == 0:
         update_content(inicio_content())
     elif opcao == 1:
@@ -46,7 +44,7 @@ def escolher_opcao(e, update_content, configuracoes_content, inicio, cadastros_c
 
 def menu(page: ft.Page):
     # Define o título da página
-    page.title = "PMGAS"
+    page.title = "PMGAS - Menu"
     
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
@@ -57,15 +55,19 @@ def menu(page: ft.Page):
         return inicio()
 
     def configuracoes_content():
+        from configuracoes import configuracoes
         return configuracoes(page)
 
     def cadastros_content():
+        from cadastros import cadastros
         return cadastros(page)
 
     def graficos_content():
+        from graficos import graficos
         return graficos(page)
 
     def perfil_content():
+        from perfil import perfil
         return perfil(page)
 
     # Função para abrir a página flutuante de gráficos
@@ -117,7 +119,8 @@ def menu(page: ft.Page):
                     size=30,
                     color=ft.colors.WHITE,
                 ),
-                navigation_bar(update_content, configuracoes_content, inicio, cadastros_content, graficos_content, perfil_content, inicio_content),
+                navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content),
+                ft.Container(height=20),
                 ft.Row(
                     alignment=ft.MainAxisAlignment.CENTER,
                     controls=[  
