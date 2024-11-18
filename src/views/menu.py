@@ -51,8 +51,8 @@ def menu(page: ft.Page):
         page.controls.append(content)  # Adiciona o novo conteúdo
         page.update()  # Atualiza a página
 
-    def inicio_content():
-        return inicio()
+    def menu_content():
+        return inicio(page)
 
     def configuracoes_content():
         from configuracoes import configuracoes
@@ -80,7 +80,7 @@ def menu(page: ft.Page):
                 content=ft.Column(
                     controls=[
                         ft.Text("Aqui vão as informações detalhadas sobre os gráficos."),
-                        ft.ElevatedButton("Fechar", on_click=lambda e: graficos_dialog.close())
+                        ft.ElevatedButton("Fechar", on_click=lambda e: close_grf_dialog(page))
                     ]
                 )
             )
@@ -99,7 +99,7 @@ def menu(page: ft.Page):
                 content=ft.Column(
                     controls=[
                         ft.Text("Aqui vão as informações detalhadas sobre os Aterros Ronald."),
-                        ft.ElevatedButton("Fechar", on_click=lambda e: aterros_dialog.close())
+                        ft.ElevatedButton("Fechar", on_click=lambda e: close_grf_dialog(page))
                     ]
                 )
             )
@@ -108,6 +108,13 @@ def menu(page: ft.Page):
         page.dialog = aterros_dialog  # Definindo o Dialog na página
         aterros_dialog.open = True  # Abrindo o Dialog
         page.update()  # Atualizando a página para mostrar o Dialog
+    
+    def close_grf_dialog(page):
+        page.dialog.open = False  # Fecha o diálogo
+        page.update()  # Atualiza a página
+
+    # Após fechar, reexibe a página de configurações
+        update_content(menu_content())
         
     # Define o conteúdo da página inicial
     def inicio():
@@ -119,7 +126,7 @@ def menu(page: ft.Page):
                     size=30,
                     color=ft.colors.WHITE,
                 ),
-                navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content),
+                navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
                 ft.Container(height=20),
                 ft.Row(
                     alignment=ft.MainAxisAlignment.CENTER,
