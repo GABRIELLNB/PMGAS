@@ -11,9 +11,10 @@ sys.path.append(str(root))
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
-from sobre import sobre
+
 from sair import sair_da_conta
 from ajuda import ajuda
+from sobre import sobre
 
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
@@ -74,6 +75,44 @@ def configuracoes(page: ft.Page):
     def menu_content():
         from menu import menu
         return menu(page)
+    
+    def sbr(e):
+        sobre_dialog = ft.AlertDialog(
+        title=ft.Text("Sobre o Projeto", weight="bold", size=20),
+        content=ft.Container(
+            width=500,
+            height=200,
+            padding=ft.padding.all(10),
+            content=ft.Text(
+                "Este projeto visa monitorar aterros sanitários em tempo real, "
+                "facilitando a gestão ambiental e a prevenção de riscos ecológicos. "
+                "Desenvolvido por estudantes de Engenharia de Computação.",
+                size=16,
+                color=a2,
+                text_align=ft.TextAlign.JUSTIFY,
+            ),
+        ),
+        actions=[
+            ft.ElevatedButton(
+                "Fechar",
+                on_click=lambda e: close_sobre_dialog(page),  # Fecha o diálogo
+                bgcolor=a1,
+                color=b,
+            )
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,  # Alinha o botão de ação à direita
+    )
+        page.dialog = sobre_dialog  # Vincula o diálogo à página
+        sobre_dialog.open = True  # Abre o diálogo
+        page.update()  # Atualiza a página para exibir o diálogo
+        
+    def close_sobre_dialog(page):
+        page.dialog.open = False  # Fecha o diálogo
+        page.update()  # Atualiza a página
+
+    # Após fechar, reexibe a página de configurações
+        update_content(configuracoes_content())
+
 
     def confg():
         return ft.Column(
@@ -267,7 +306,7 @@ def configuracoes(page: ft.Page):
                                 width=1000,
                                 height=40,
                             ),
-                                on_click=lambda event: update_content(sobre(page)),
+                                on_click=lambda e: sbr(e)
                            ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
