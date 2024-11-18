@@ -94,6 +94,25 @@ def perfil(page: ft.Page):
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
                         controls=[
                             ft.Row(
+                                alignment=ft.MainAxisAlignment.END,
+                                spacing=180,
+                                controls=[
+                                    ft.Container(
+                                        alignment=ft.alignment.top_right,
+                                        bgcolor=b,
+                                        border_radius=50,  # Borda arredondada para formar o círculo
+                                        width=40,  # Largura do círculo
+                                        height=40,  # Altura do círculo
+                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        content=ft.Icon(
+                                            ft.icons.EDIT_SQUARE,  # Ícone de notificação
+                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                                color=a1  # Cor do ícone
+                                        ),  
+                                    ),
+                                ]
+                            ),
+                            ft.Row(
                                 alignment=ft.MainAxisAlignment.CENTER,
                                 spacing=180,
                                 controls=[
