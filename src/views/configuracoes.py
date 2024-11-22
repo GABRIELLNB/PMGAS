@@ -76,44 +76,6 @@ def configuracoes(page: ft.Page):
         from menu import menu
         return menu(page)
     
-    def sbr(e):
-        sobre_dialog = ft.AlertDialog(
-        title=ft.Text("Sobre o Projeto", weight="bold", size=20),
-        content=ft.Container(
-            width=500,
-            height=200,
-            padding=ft.padding.all(10),
-            content=ft.Text(
-                "Este projeto visa monitorar aterros sanitários em tempo real, "
-                "facilitando a gestão ambiental e a prevenção de riscos ecológicos. "
-                "Desenvolvido por estudantes de Engenharia de Computação.",
-                size=16,
-                color=a2,
-                text_align=ft.TextAlign.JUSTIFY,
-            ),
-        ),
-        actions=[
-            ft.ElevatedButton(
-                "Fechar",
-                on_click=lambda e: close_sobre_dialog(page),  # Fecha o diálogo
-                bgcolor=a1,
-                color=b,
-            )
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,  # Alinha o botão de ação à direita
-    )
-        page.dialog = sobre_dialog  # Vincula o diálogo à página
-        sobre_dialog.open = True  # Abre o diálogo
-        page.update()  # Atualiza a página para exibir o diálogo
-        
-    def close_sobre_dialog(page):
-        page.dialog.open = False  # Fecha o diálogo
-        page.update()  # Atualiza a página
-
-    # Após fechar, reexibe a página de configurações
-        update_content(configuracoes_content())
-
-
     def confg():
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
@@ -306,7 +268,7 @@ def configuracoes(page: ft.Page):
                                 width=1000,
                                 height=40,
                             ),
-                                on_click=lambda e: sbr(e)
+                                on_click=lambda e: update_content(sobre(page)),
                            ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
@@ -324,7 +286,7 @@ def configuracoes(page: ft.Page):
                                 width=1000,
                                 height=40,
                                 ),
-                                on_click=lambda event: update_content(ajuda(page)),
+                                on_click=lambda e: update_content(ajuda(page)),
                             ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
@@ -342,7 +304,7 @@ def configuracoes(page: ft.Page):
                                     width=1000,
                                     height=40,
                                 ),
-                                on_click=lambda event: update_content(sair_da_conta(page)),
+                                on_click=lambda e: update_content(sair_da_conta(page)),
                             ),
                         ]
                     ),
