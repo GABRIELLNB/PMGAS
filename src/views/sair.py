@@ -15,6 +15,7 @@ a2 = "#04282D"
 b = "#FFFFFF"
 
 def sair_da_conta(page: ft.Page):
+    
     from configuracoes import configuracoes
     # Diálogo de confirmação
     sair_dialog = ft.AlertDialog(
