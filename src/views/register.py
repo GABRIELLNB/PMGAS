@@ -7,6 +7,8 @@ b = "#FFFFFF"
 
 def register(page: ft.Page, logar):
     
+    page.title = "PMGAS - Cadastro"
+    
     # Layout da tela de registro
     register = ft.Column(
         controls=[
