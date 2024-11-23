@@ -15,6 +15,8 @@ a2 = "#04282D"
 b = "#FFFFFF"
 
 def sobre(page: ft.Page):
+    
+    
     from configuracoes import configuracoes
     sobre_dialog = ft.AlertDialog(
         title=ft.Text("Sobre o Projeto", weight="bold", size=20, text_align=ft.TextAlign.CENTER),
