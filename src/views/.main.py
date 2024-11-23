@@ -9,6 +9,8 @@ from perfil import perfil
 from ajuda import ajuda
 from sobre import sobre
 from sair import sair_da_conta
+from edit_perfil import edit_perfil
+from edit_area import edit_area
 import sys
 from pathlib import Path
 
@@ -34,6 +36,14 @@ def main(page: ft.Page):
         page.controls.clear()
         page.controls.append(nova_tela)
         page.update()
+        
+        # Funções para alternar entre telas
+    def abrir_edit_area(e: ft.ControlEvent):
+        trocar_tela(edit_area(page))
+    
+    # Funções para alternar entre telas
+    def abrir_edit_perf(e: ft.ControlEvent):
+        trocar_tela(edit_perfil(page))
         
     # Funções para alternar entre telas
     def abrir_sobre(e: ft.ControlEvent):
