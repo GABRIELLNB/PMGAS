@@ -15,6 +15,7 @@ a2 = "#04282D"
 b = "#FFFFFF"
 
 def ajuda(page: ft.Page):
+    
     from configuracoes import configuracoes
     ajuda_dialog = ft.AlertDialog(
         title=ft.Text("Sobre o Projeto", weight="bold", size=20, text_align=ft.TextAlign.CENTER,),
