@@ -8,6 +8,9 @@ parent = file.parent
 root = file.parent.parent  # Importações relativas
 sys.path.append(str(root))
 
+from edit_perfil import edit_perfil
+from edit_area import edit_area
+
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
@@ -103,7 +106,7 @@ def perfil(page: ft.Page):
                                         border_radius=50,  # Borda arredondada para formar o círculo
                                         width=40,  # Largura do círculo
                                         height=40,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        on_click=lambda e: update_content(edit_perfil(page)),
                                         content=ft.Icon(
                                             ft.icons.EDIT_SQUARE,  # Ícone de notificação
                                                 size=40,  # Tamanho do ícone ajustado para maior visibilidade
@@ -159,7 +162,7 @@ def perfil(page: ft.Page):
                                         border_radius=50,  # Borda arredondada para formar o círculo
                                         width=100,  # Largura do círculo
                                         height=100,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        on_click=lambda e: update_content(edit_area(page)),
                                         content=ft.Icon(
                                             ft.icons.EDIT_DOCUMENT,  # Ícone de notificação
                                                 size=40,  # Tamanho do ícone ajustado para maior visibilidade
