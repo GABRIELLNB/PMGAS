@@ -18,6 +18,8 @@ from models.Blogin import check_senha
 from menu import menu
 
 def login(page: ft.Page, registar):
+    page.title = "PMGAS - Login"
+    
     error_message = ft.Text(value="", color=ft.colors.RED)
 
     # Função chamada quando o botão de login é pressionado
