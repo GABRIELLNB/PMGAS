@@ -14,7 +14,7 @@ b = "#FFFFFF"
 
 # Função de configuração
 def edit_perfil(page: ft.Page):
-    page.title = "PMGAS - Cadastros"
+    page.title = "PMGAS - Editar Perfil"
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
