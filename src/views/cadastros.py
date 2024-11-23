@@ -137,7 +137,7 @@ def cadastros(page: ft.Page):
                                         ),
                                         CNPJ_input := ft.TextField(
                                             hint_text='CNPJ',
-                                            prefix_icon=ft.icons.BUSINESS,
+                                            prefix_icon=ft.icons.CONTACT_PAGE,
                                             text_vertical_align=-0.15,
                                             border=ft.InputBorder.UNDERLINE,
                                             border_width=2,
