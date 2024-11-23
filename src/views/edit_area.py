@@ -14,7 +14,7 @@ b = "#FFFFFF"
 
 # Função de configuração
 def edit_area(page: ft.Page):
-    page.title = "PMGAS - Cadastros"
+    page.title = "PMGAS - Editar Áreas"
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
