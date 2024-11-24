@@ -5,10 +5,15 @@ a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
-def register(page: ft.Page, logar):
-    
+def register(page: ft.Page):
+    from login import login
     page.title = "PMGAS - Cadastro"
     
+    def update_content(content):
+        page.controls.clear()  # Limpa o conteúdo da página
+        page.controls.append(content)  # Adiciona o novo conteúdo
+        page.update()  # Atualiza a página
+        
     # Layout da tela de registro
     register = ft.Column(
         controls=[
@@ -124,7 +129,7 @@ def register(page: ft.Page, logar):
                                 ft.TextButton(
                                     style=ft.ButtonStyle(color=a2),
                                     text='Já tenho uma conta',
-                                    on_click=logar  # Ação para ir para a tela de login
+                                    on_click=lambda e: update_content(login(page))  # Ação para ir para a tela de login
                                 )
                             ],
                             alignment=ft.MainAxisAlignment.CENTER
