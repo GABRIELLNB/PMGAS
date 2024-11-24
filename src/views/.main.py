@@ -11,6 +11,10 @@ from sobre import sobre
 from sair import sair_da_conta
 from edit_perfil import edit_perfil
 from edit_area import edit_area
+from login_ADM import login_adm
+from menu_ADM import menu_adm
+from perfis_ADM import perfil_adm
+from configuracoes_ADM import configuracoes_adm
 import sys
 from pathlib import Path
 
@@ -36,8 +40,24 @@ def main(page: ft.Page):
         page.controls.clear()
         page.controls.append(nova_tela)
         page.update()
+    
+    # Funções para alternar entre telas
+    def abrir_config_adm(e: ft.ControlEvent):
+        trocar_tela(configuracoes_adm(page))
+    
+    # Funções para alternar entre telas
+    def abrir_perfil_adm(e: ft.ControlEvent):
+        trocar_tela(perfil_adm(page))
+          
+    # Funções para alternar entre telas
+    def abrir_menu_adm(e: ft.ControlEvent):
+        trocar_tela(menu_adm(page))
         
-        # Funções para alternar entre telas
+    # Funções para alternar entre telas
+    def abrir_login_adm(e: ft.ControlEvent):
+        trocar_tela(login_adm(page))
+        
+    # Funções para alternar entre telas
     def abrir_edit_area(e: ft.ControlEvent):
         trocar_tela(edit_area(page))
     
@@ -74,13 +94,13 @@ def main(page: ft.Page):
         trocar_tela(menu(page))
 
     def logar(e: ft.ControlEvent):
-        trocar_tela(login(page, registar))
+        trocar_tela(login(page))
 
     def registar(e: ft.ControlEvent):
-        trocar_tela(register(page, logar))
+        trocar_tela(register(page))
 
     # Exibe a tela inicial de login
-    trocar_tela(login(page, registar))
+    trocar_tela(login(page))
 
 # Executa o app
 if __name__ == "__main__":
