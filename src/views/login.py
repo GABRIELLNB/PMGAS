@@ -16,10 +16,17 @@ b = "#FFFFFF"
 from models.Blogin import check_email
 from models.Blogin import check_senha
 from menu import menu
+from login_ADM import login_adm
 
-def login(page: ft.Page, registar):
+def login(page: ft.Page):
+    from register import register
     page.title = "PMGAS - Login"
     
+    def update_content(content):
+        page.controls.clear()  # Limpa o conteúdo da página
+        page.controls.append(content)  # Adiciona o novo conteúdo
+        page.update()  # Atualiza a página
+        
     error_message = ft.Text(value="", color=ft.colors.RED)
 
     # Função chamada quando o botão de login é pressionado
@@ -124,6 +131,11 @@ def login(page: ft.Page, registar):
                                         color=ft.colors.with_opacity(0.9, a2)
                                     )
                                 ),
+                                ft.TextButton(
+                                    style=ft.ButtonStyle(color=a2),
+                                    text='Entrar como administrador',
+                                    on_click=lambda e: update_content(login_adm(page))  # Ação para ir para a tela de registro
+                                ),
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
                         ),
@@ -136,7 +148,7 @@ def login(page: ft.Page, registar):
                                 ft.TextButton(
                                     style=ft.ButtonStyle(color=a2),
                                     text='Criar nova conta',
-                                    on_click=registar  # Ação para ir para a tela de registro
+                                    on_click=lambda e: update_content(register(page))  # Ação para ir para a tela de registro
                                 )
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
