@@ -127,10 +127,10 @@ def configuracoes(page: ft.Page):
                             ),
                             ft.Row(
                                 alignment=ft.MainAxisAlignment.CENTER,
-                                spacing=90,
+                                spacing=142,
                                 controls=[
-                                    ft.Text(value='Armazenamento      ', weight='bold', size=20, color=a2),
-                                    ft.Text(value=' Modo Pro', weight='bold', size=20, color=a2),
+                                    ft.Text(value='Armazenamento', weight='bold', size=20, color=a2),
+                                    ft.Text(value='Modo Pro', weight='bold', size=20, color=a2),
                                 ]
                             ),
                             # Container com a palavra 'Notificações'
