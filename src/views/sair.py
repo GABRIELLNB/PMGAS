@@ -6,8 +6,8 @@ from pathlib import Path
 file = Path(__file__).resolve()
 parent = file.parent
 root = file.parent.parent  # Caminho relativo
-
 sys.path.append(str(root))
+
 
 # Definição de cores
 a1 = "#7BD8D9"
@@ -16,7 +16,13 @@ b = "#FFFFFF"
 
 def sair_da_conta(page: ft.Page):
     
+    def update_content(content):
+        page.controls.clear()  # Limpa o conteúdo da página
+        page.controls.append(content)  # Adiciona o novo conteúdo
+        page.update()  # Atualiza a página
+        
     from configuracoes import configuracoes
+    from login import login
     # Diálogo de confirmação
     sair_dialog = ft.AlertDialog(
         title=ft.Text("DESEJA SAIR DA SUA CONTA?", weight="bold", size=20, text_align=ft.TextAlign.CENTER,),
@@ -45,7 +51,7 @@ def sair_da_conta(page: ft.Page):
                         controls=[
                             ft.ElevatedButton(
                                 "Sim",
-                                on_click=lambda e: print("Desconectado"),  # Aqui você pode adicionar a lógica para sair da conta
+                                on_click=lambda e: print,  # Aqui você pode adicionar a lógica para sair da conta
                                 bgcolor=a1,
                                 color=b,
                             ),
