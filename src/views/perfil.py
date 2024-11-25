@@ -103,7 +103,6 @@ def perfil(page: ft.Page):
                                     ft.Container(
                                         alignment=ft.alignment.top_right,
                                         bgcolor=b,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
                                         width=40,  # Largura do círculo
                                         height=40,  # Altura do círculo
                                         on_click=lambda e: update_content(edit_perfil(page)),
