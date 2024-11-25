@@ -142,23 +142,6 @@ def login_adm(page: ft.Page):
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
                         ),
-                        ft.Row(
-                            controls=[
-                                ft.TextButton(
-                                    text='Recuperar senha',
-                                    style=ft.ButtonStyle(color=a2)
-                                ),
-                            ],
-                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN
-                        ),
-                        ft.Row(
-                            controls=[
-                                ft.IconButton(icon=ft.icons.EMAIL, icon_color=a2),
-                                ft.IconButton(icon=ft.icons.TELEGRAM, icon_color=a2),
-                                ft.IconButton(icon=ft.icons.FACEBOOK, icon_color=a2)
-                            ],
-                            alignment=ft.MainAxisAlignment.CENTER
-                        )
                     ],
                     spacing=10,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER
