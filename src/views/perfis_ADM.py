@@ -60,125 +60,188 @@ def perfil_adm(page: ft.Page):
     def cadastros_content():
         from menu_ADM import menu_adm
         return menu_adm(page)  # Página de cadastros
+    
+    def perfis(email, nome, cpf, senha, cadastros):
+        return ft.Container(
+        bgcolor=ft.colors.WHITE,
+        border_radius=10,
+        width=1000,
+        height=280,
+        padding=ft.padding.all(10),
+        content=ft.Column(
+            controls=[
+                ft.Container(
+                    bgcolor=b,
+                    padding=ft.padding.all(10),
+                    border_radius=10,
+                    width=1300,
+                    height=252,
+                    content=ft.Column(
+                        controls=[
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.PERSON, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Email: {email}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Nome: {nome}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"CPF: {cpf}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.CONTACT_PAGE, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Senha: {senha}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.LOCATION_CITY, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Cadastros: {cadastros}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Container(
+                                ft.Row(
+                                    alignment=ft.MainAxisAlignment.END,
+                                    spacing=10,
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Icon(
+                                                ft.icons.DELETE,
+                                                size=24,
+                                                color=a2,
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+                ft.Container(height=10),
+            ],
+        ),
+    )
 
-
+        
 
     # Função principal para montar a página de perfil
     def perf():
         return ft.Column(
-            alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
+            alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
+                ft.Text(value="PMGAS", weight="bold", size=30, color=ft.colors.WHITE),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content),
-                ft.Container(height=20),
-                ft.Container(
-                    alignment=ft.alignment.top_center,  # Alinha o container ao topo central
-                    bgcolor=ft.colors.WHITE,
-                    border_radius=10,
-                    padding=ft.padding.all(10),
-                    width=1000,  # Largura do container
-                    height=630,
-                    content=ft.Column(
-                        spacing=20,
-                        alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
-                        controls=[
-                            ft.Row(
-                                alignment=ft.MainAxisAlignment.END,
-                                spacing=180,
+                ft.Container(height=10),
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
+                    controls=[
+                        # SearchBar
+                        ft.Container(
+                            bgcolor=ft.colors.WHITE,
+                            padding=ft.padding.symmetric(horizontal=10, vertical=5),
+                            border_radius=15,
+                            content=ft.Row(
+                                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                                 controls=[
-                                    ft.Container(
-                                        alignment=ft.alignment.top_right,
-                                        bgcolor=b,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=40,  # Largura do círculo
-                                        height=40,  # Altura do círculo
-                                        on_click=lambda e: update_content(edit_perfil(page)),
-                                        content=ft.Icon(
-                                            ft.icons.EDIT_SQUARE,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=a1  # Cor do ícone
-                                        ),  
+                                    ft.Icon(ft.icons.SEARCH, color=ft.colors.GREY),
+                                    ft.TextField(
+                                        hint_text="Buscar...",
+                                        border=ft.InputBorder.NONE,
+                                        cursor_color=ft.colors.BLACK,
+                                        text_style=ft.TextStyle(
+                                            size=16, color=ft.colors.BLACK
+                                        ),
+                                        expand=True,
                                     ),
-                                ]
+                                    ft.Icon(ft.icons.CLOSE, color=ft.colors.GREY),
+                                ],
                             ),
-                            ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                spacing=180,
-                                controls=[
-                                    ft.Container(
-                                        bgcolor=a1,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=150,  # Largura do círculo
-                                        height=150,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
-                                        content=ft.Icon(
-                                            ft.icons.PERSON_OUTLINED,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=b  # Cor do ícone
-                                        ),  
-                                    ),
-                                ]
+                            width=1000,  # Ajusta a largura do SearchBar
+                        ),
+                        ft.Container(width=150),
+                        # Botão com ícone
+                        ft.Container(
+                            alignment=ft.alignment.center,
+                            bgcolor=a2,
+                            width=40,  # Largura do círculo
+                            height=40,  # Altura do círculo
+                            content=ft.Icon(
+                                ft.icons.EDIT_SQUARE,  # Ícone de notificação
+                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                color=a1  # Cor do ícone
                             ),
-                            ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                
-                                controls=[
-                                    ft.Text(value='Usuario', weight='bold', size=20, color=a2),
-                                ]
-                            ),
-                            ft.Container(height=20),
-                            ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                spacing=180,
-                                controls=[
-                                    ft.Container(
-                                        bgcolor=a1,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=100,  # Largura do círculo
-                                        height=100,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
-                                        content=ft.Icon(
-                                            ft.icons.NOTIFICATIONS_OUTLINED,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=b  # Cor do ícone
-                                        ),  
-                                    ),
-                                    ft.Container(
-                                        bgcolor=a1,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=100,  # Largura do círculo
-                                        height=100,  # Altura do círculo
-                                        on_click=lambda e: update_content(edit_area(page)),
-                                        content=ft.Icon(
-                                            ft.icons.EDIT_DOCUMENT,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=b  # Cor do ícone
-                                        ),  
-                                    ),
-                                ]
-                            ),
-                            ft.Container(height=20),
-                            ft.ElevatedButton(
-                                bgcolor=a2,
-                                content=ft.Container(
-                                    padding=ft.padding.symmetric(horizontal=20, vertical=10),
-                                content=ft.Row(
-                                    controls=[
-                                        ft.Icon(ft.icons.AREA_CHART, color=ft.colors.WHITE),
-                                        ft.Text("Áreas Cadastradas", color=ft.colors.WHITE, weight="bold"),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.START,
-                                    spacing=10,
-                                ),
-                                bgcolor=a2,
-                                width=1000,
-                                height=40,
-                                ),
-                            ),
-                            ft.Container(height=70),
-                        ],
-                    ),
+                        ),
+                        
+                        ft.Container(width=50),
+                        
+                    ],
                 ),
+                ft.Divider(
+                    height=1,
+                    color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                    thickness=1,
+                ),
+                ft.Container(height=10),
+                perfis(email="ass", nome="assd",cpf="asdffdgf" ,senha="dsfds",cadastros="aasfgdf" ),
+                perfis(email="ass", nome="assd",cpf="asdffdgf" ,senha="dsfds",cadastros="aasfgdf" ),
             ],
         )
+
     return perf()
