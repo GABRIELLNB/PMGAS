@@ -53,7 +53,12 @@ def login(page: ft.Page):
     # Layout da tela de login
     login = ft.Column(
         controls=[
-            ft.Text(value='PMGAS', weight='bold', size=30, color=ft.colors.WHITE),
+            ft.Image(
+                    src="image.png",  # Caminho local ou URL da imagem
+                    width=300,  # Largura da imagem
+                    height=100,  # Altura da imagem
+                    fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
+                ),
             ft.Container(
                 bgcolor=ft.colors.WHITE,
                 border_radius=10,
