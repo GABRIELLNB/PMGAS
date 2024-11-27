@@ -120,11 +120,12 @@ def menu(page: ft.Page):
     def inicio():
         return ft.Column(
             controls=[
-                ft.Text(
-                    value='PMGAS',
-                    weight='bold',
-                    size=30,
-                    color=ft.colors.WHITE,
+                ft.Container(height=5),
+                ft.Image(
+                    src="image.png",  # Caminho local ou URL da imagem
+                    width=250,  # Largura da imagem
+                    height=50,  # Altura da imagem
+                    fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
                 ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
                 ft.Container(height=20),
@@ -178,7 +179,8 @@ def menu(page: ft.Page):
                         )
                     ]
                 )
-            ]
+            ],
+
         )
 
     # Adiciona o conteúdo inicial à página
