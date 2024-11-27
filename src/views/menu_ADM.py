@@ -229,7 +229,7 @@ def menu_adm(page: ft.Page):
                             ),
                             width=1000,  # Ajusta a largura do SearchBar
                         ),
-                        ft.Container(width=150),
+                        ft.Container(width=125),
                         # Botão com ícone
                         ft.Container(
                             alignment=ft.alignment.center,
@@ -237,13 +237,13 @@ def menu_adm(page: ft.Page):
                             width=40,  # Largura do círculo
                             height=40,  # Altura do círculo
                             content=ft.Icon(
-                                ft.icons.EDIT_SQUARE,  # Ícone de notificação
+                                ft.icons.EDIT_DOCUMENT,  # Ícone de notificação
                                 size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                color=a1  # Cor do ícone
+                                color=b  # Cor do ícone
                             ),
                         ),
                         
-                        ft.Container(width=50),
+                        ft.Container(width=75),
                         
                     ],
                 ),
