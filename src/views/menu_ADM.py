@@ -39,6 +39,8 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
 
 # Menu Administrativo
 def menu_adm(page: ft.Page):
+    from menu_outra_ADM import menu_outra_ADM
+    
     # Configuração da página
     page.title = "PMGAS - Menu"
     page.scroll = True
@@ -60,11 +62,138 @@ def menu_adm(page: ft.Page):
     def perfil_content():
         from perfis_ADM import perfil_adm
         return perfil_adm(page)
+    
+    def cad(nome_proprietario, nome_juridico, porte_empresa, cnpj, cep, area):
+        return ft.Container(
+                    bgcolor=ft.colors.WHITE,
+                    border_radius=10,
+                    width=1000,
+                    height=330,
+                    padding=ft.padding.all(10),
+                    on_click=lambda e:update_content(menu_outra_ADM(page)),
+                    content=ft.Column(
+                        controls=[
+                            # Dados da área
+                            ft.Container(
+                                alignment=ft.alignment.center,
+                                content=ft.Text(value=f"DADOS DA ÁREA {area}", weight="bold", size=20, color=a2),
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                thickness=1,
+                            ),
+                            # Formulário de entrada
+                            ft.Container(
+                                bgcolor=b,
+                                padding=ft.padding.all(10),
+                                border_radius=10,
+                                width=1000,
+                                height=270,
+                    content=ft.Column(
+                        controls=[
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.PERSON, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Nome do Proprietário: {nome_proprietario}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Nome Jurídico: {nome_juridico}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Porte da Empresa: {porte_empresa}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.CONTACT_PAGE, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"CNPJ: {cnpj}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.LOCATION_CITY, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"CEP: {cep}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Container(
+                                ft.Row(
+                                    alignment=ft.MainAxisAlignment.END,
+                                    spacing=10,
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Icon(
+                                                ft.icons.DELETE,
+                                                size=24,
+                                                color=a2,
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        ),
+    )
 
 
 
     # Conteúdo inicial
     def inicio():
+  
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -123,91 +252,8 @@ def menu_adm(page: ft.Page):
                     color=ft.colors.with_opacity(0.25, ft.colors.GREY),
                     thickness=1,
                 ),
-                ft.Container(height=20),
-                ft.Container(
-                    bgcolor=ft.colors.WHITE,
-                    border_radius=10,
-                    width=1000,
-                    height=400,
-                    padding=ft.padding.all(10),
-                    content=ft.Column(
-                        controls=[
-                            # Dados da área
-                            ft.Container(
-                                alignment=ft.alignment.center,
-                                content=ft.Text(value="DADOS DA ÁREA xxxxxxxxxxxxx", weight="bold", size=20, color=a2),
-                            ),
-                            ft.Divider(
-                                height=1,
-                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
-                                thickness=1,
-                            ),
-                            # Formulário de entrada
-                            ft.Container(
-                                bgcolor=a2,
-                                padding=ft.padding.all(6),
-                                border_radius=10,
-                                width=1000,
-                                height=300,
-                                content=ft.Column(
-                                    controls=[
-                                        ft.TextField(
-                                            hint_text="Nome do Proprietário",
-                                            prefix_icon=ft.icons.PERSON,
-                                            text_vertical_align=-0.15,
-                                            border=ft.InputBorder.UNDERLINE,
-                                            border_width=2,
-                                            border_color=b,
-                                            hint_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.4, b)),
-                                            text_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.9, b)),
-                                        ),
-                                        ft.TextField(
-                                            hint_text="Nome Jurídico",
-                                            prefix_icon=ft.icons.BUSINESS,
-                                            text_vertical_align=-0.15,
-                                            border=ft.InputBorder.UNDERLINE,
-                                            border_width=2,
-                                            border_color=b,
-                                            hint_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.4, b)),
-                                            text_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.9, b)),
-                                        ),
-                                        ft.TextField(
-                                            hint_text="Porte da Empresa",
-                                            prefix_icon=ft.icons.BUSINESS,
-                                            text_vertical_align=-0.15,
-                                            border=ft.InputBorder.UNDERLINE,
-                                            border_width=2,
-                                            border_color=b,
-                                            hint_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.4, b)),
-                                            text_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.9, b)),
-                                        ),
-                                        ft.TextField(
-                                            hint_text="CNPJ",
-                                            prefix_icon=ft.icons.CONTACT_PAGE,
-                                            text_vertical_align=-0.15,
-                                            border=ft.InputBorder.UNDERLINE,
-                                            border_width=2,
-                                            border_color=b,
-                                            hint_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.4, b)),
-                                            text_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.9, b)),
-                                        ),
-                                        ft.TextField(
-                                            hint_text="CEP",
-                                            prefix_icon=ft.icons.LOCATION_CITY,
-                                            text_vertical_align=-0.15,
-                                            border=ft.InputBorder.UNDERLINE,
-                                            border_width=1,
-                                            border_color=b,
-                                            hint_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.4, b)),
-                                            text_style=ft.TextStyle(size=14, weight="bold", color=ft.colors.with_opacity(0.9, b)),
-                                        ),
-                                    ],
-                                ),
-                            ),
-                            ft.Container(height=10),
-                        ],
-                    ),
-                ),
+                ft.Container(height=10),
+                cad(nome_proprietario= "sa", nome_juridico="as", porte_empresa="as", cnpj="as", cep="as",area="xxxxxxxxxxxxxxx"),
             ],
         )
 
