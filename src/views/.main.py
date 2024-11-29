@@ -16,6 +16,7 @@ from menu_ADM import menu_adm
 from perfis_ADM import perfil_adm
 from configuracoes_ADM import configuracoes_adm
 from menu_outra_ADM  import menu_outra_ADM
+from excluir import excluir
 import sys
 from pathlib import Path
 
@@ -41,7 +42,11 @@ def main(page: ft.Page):
         page.controls.clear()
         page.controls.append(nova_tela)
         page.update()
-    
+        
+    # Funções para alternar entre telas
+    def abrir_excluir(e: ft.ControlEvent):
+        trocar_tela(excluir(page))
+        
     # Funções para alternar entre telas
     def abrir_menu_outra_adm(e: ft.ControlEvent):
         trocar_tela(menu_outra_ADM(page))
