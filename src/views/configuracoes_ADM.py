@@ -89,14 +89,14 @@ def configuracoes_adm(page: ft.Page):
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
                         controls=[
                             ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                spacing=180,
+                                alignment=ft.MainAxisAlignment.END,
+                                spacing=15,
                                 controls=[
                                     ft.Container(
                                         on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
                                         content=ft.Icon(
                                         ft.icons.NOTIFICATIONS,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                                size=35,  # Tamanho do ícone ajustado para maior visibilidade
                                                 color=a2  # Cor do ícone
                                             ),
                                         
