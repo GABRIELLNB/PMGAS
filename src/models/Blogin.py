@@ -6,6 +6,8 @@ file = Path(__file__).resolve()
 parent = file.parent
 root =  file.parent.parent  # Importações relativas
 
+#BAIXAR pip install openpyxl e pip install pandas
+
 
 sys.path.append(str(root))
 def importar_credenciais(caminho_arquivo):
