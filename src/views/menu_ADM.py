@@ -12,6 +12,8 @@ file = Path(__file__).resolve()
 root = file.parent.parent
 sys.path.append(str(root))
 
+from excluir import excluir
+
 
 # Cria a barra de navegação personalizada
 def navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content):
@@ -178,6 +180,7 @@ def menu_adm(page: ft.Page):
                                                 size=24,
                                                 color=a2,
                                             ),
+                                            on_click=lambda e: update_content(excluir(page)),
                                         ),
                                     ],
                                 ),
