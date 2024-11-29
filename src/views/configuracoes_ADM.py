@@ -59,6 +59,17 @@ def configuracoes_adm(page: ft.Page):
         from perfis_ADM import perfil_adm
         return perfil_adm(page)  # Página de perfil
     
+    def adm(id, email, senha):
+        return ft.Container(
+            content=ft.Column(
+                controls=[
+                    ft.Text(value=f"ID: {id}", weight='bold', size=20, color=a2),
+                    ft.Text(value=f"Email: {email}", weight='bold', size=20, color=a2),
+                    ft.Text(value=f"Senha: {senha}", weight='bold', size=20, color=a2)
+                ],
+            ),
+        )
+    
     def confg():
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
@@ -71,12 +82,36 @@ def configuracoes_adm(page: ft.Page):
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
-                    width=1000,  # Largura do container
+                    width=1300,  # Largura do container
                     height=630,
                     content=ft.Column(
                         spacing=20,
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
                         controls=[
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                spacing=180,
+                                controls=[
+                                    ft.Container(
+                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        content=ft.Icon(
+                                        ft.icons.NOTIFICATIONS,  # Ícone de notificação
+                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                                color=a2  # Cor do ícone
+                                            ),
+                                        
+                                    ),
+                                    ft.Container(
+                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        content=ft.Icon(
+                                        ft.icons.EDIT_SQUARE,  # Ícone de notificação
+                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
+                                                color=a2  # Cor do ícone
+                                            ),
+                                        
+                                    ),
+                                ]
+                            ),
                             ft.Row(
                                 alignment=ft.MainAxisAlignment.CENTER,
                                 spacing=180,
@@ -88,23 +123,11 @@ def configuracoes_adm(page: ft.Page):
                                         height=100,  # Altura do círculo
                                         on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
                                         content=ft.Icon(
-                                        ft.icons.CLOUD,  # Ícone de notificação
+                                        ft.icons.PERSON,  # Ícone de notificação
                                                 size=40,  # Tamanho do ícone ajustado para maior visibilidade
                                                 color=b  # Cor do ícone
                                             ),
                                         
-                                    ),
-                                    ft.Container(
-                                        bgcolor=a1,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=100,  # Largura do círculo
-                                        height=100,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
-                                        content=ft.Icon(
-                                            ft.icons.PAID,  # Ícone de notificação
-                                            size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                            color=b  # Cor do ícone
-                                        ),
                                     ),
                                 ]
                             ),
@@ -112,16 +135,16 @@ def configuracoes_adm(page: ft.Page):
                                 alignment=ft.MainAxisAlignment.CENTER,
                                 spacing=142,
                                 controls=[
-                                    ft.Text(value='Armazenamento', weight='bold', size=20, color=a2),
-                                    ft.Text(value='Modo Pro', weight='bold', size=20, color=a2),
+                                    ft.Text(value='ADM', weight='bold', size=20, color=a2),
                                 ]
                             ),
+                            adm(id="151616", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
                             # Container com a palavra 'Notificações'
                             ft.Container(height=40),
                             ft.Container(
                                 bgcolor=a2,  # Cor de fundo
                                 border_radius=20,  # Define borda arredondada para o container
-                                width=1000,  # Largura do container
+                                width=1300,  # Largura do container
                                 height=45,  # Altura do container
                                 padding=ft.padding.symmetric(horizontal=20, vertical=0),
                                 border=ft.border.all(2, a2),
@@ -159,7 +182,7 @@ def configuracoes_adm(page: ft.Page):
                             ft.Container(
                                 bgcolor=a2,  # Cor de fundo
                                 border_radius=20,  # Define borda arredondada para o container
-                                width=1000,  # Largura do container
+                                width=1300,  # Largura do container
                                 height=45,  # Altura do container
                                 padding=ft.padding.symmetric(horizontal=20, vertical=0),
                                 border=ft.border.all(2, a2),
@@ -199,7 +222,7 @@ def configuracoes_adm(page: ft.Page):
                             ft.Container(
                                 bgcolor=a2,  # Cor de fundo
                                 border_radius=20,  # Define borda arredondada para o container
-                                width=1000,  # Largura do container
+                                width=1300,  # Largura do container
                                 height=45,  # Altura do container
                                 padding=ft.padding.symmetric(horizontal=20, vertical=0),
                                 border=ft.border.all(2, a2),
@@ -249,7 +272,7 @@ def configuracoes_adm(page: ft.Page):
                                         spacing=10,
                                     ),
                                     bgcolor=a2,
-                                    width=1000,
+                                    width=1300,
                                     height=40,
                                 ),
                                 on_click=lambda e: update_content(sair_da_conta_adm(page)),
