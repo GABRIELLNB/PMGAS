@@ -2,6 +2,8 @@ import flet as ft
 import sys
 from pathlib import Path
 
+
+
 file = Path(__file__).resolve()
 parent = file.parent
 root = file.parent.parent  # Importações relativas
@@ -27,8 +29,10 @@ def navigation_bar(update_content, configuracoes_content, cadastros_content, gra
         ],
         on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content)
     )
-
+from models.Bmenu_mapa import Maps
 def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content):
+    
+    
     opcao = e.control.selected_index
     
     if opcao == 0:
@@ -161,6 +165,7 @@ def menu(page: ft.Page):
         
     # Define o conteúdo da página inicial
     def inicio():
+  
         return ft.Column(
             controls=[
                 ft.Container(height=5),
@@ -199,7 +204,7 @@ def menu(page: ft.Page):
                             ),
                         ),
                     ]
-                ),
+                ),        
                 ft.Row(
                     alignment=ft.MainAxisAlignment.CENTER,
                     controls=[
@@ -230,7 +235,6 @@ def menu(page: ft.Page):
             ],
 
         )
-
     # Adiciona o conteúdo inicial à página
     page.scroll = True
     return inicio()  # Inicia com o conteúdo da página inicial
