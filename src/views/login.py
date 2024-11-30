@@ -44,6 +44,7 @@ def login(page: ft.Page):
             error_message.value = "Senha incorreta!"
             error_message.color = ft.colors.RED
         else:
+            page.session.set("user_email", email)  # Salvando e-mail na sessão
             page.clean()  # Função para limpar a página anterior
             page.add(menu(page))  # Ação para ir para a tela de menu
 
