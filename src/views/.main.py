@@ -28,6 +28,11 @@ parent = file.parent
 root = file.parent.parent
 sys.path.append(str(root))
 
+from models.Blogin import importar_credenciais, check_email, check_senha 
+# Carregar credenciais 
+caminho_arquivo = "Contas - PMGAS.xlsx" 
+USER_CREDENTIALS, USER_NAMES = importar_credenciais(caminho_arquivo)
+
 # Função principal
 def main(page: ft.Page):
     AZ = "#04282D"
@@ -96,7 +101,7 @@ def main(page: ft.Page):
         
     # Funções para alternar entre telas
     def abrir_perfil(e: ft.ControlEvent):
-        trocar_tela(perfil(page))
+        trocar_tela(perfil(page, email))
 
     def abrir_graficos(e: ft.ControlEvent):
         trocar_tela(graficos(page))
