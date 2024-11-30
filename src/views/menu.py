@@ -121,12 +121,17 @@ def menu(page: ft.Page):
         return ft.Column(
             controls=[
                 ft.Container(height=5),
-                ft.Image(
-                    src="image.png",  # Caminho local ou URL da imagem
-                    width=250,  # Largura da imagem
-                    height=50,  # Altura da imagem
-                    fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
-                ),
+                ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                controls=[
+                    ft.Image(
+                        src="image.png",  # Caminho local ou URL da imagem
+                        width=250,
+                        height=50,
+                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                    )
+                ]
+            ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
                 ft.Container(height=20),
                 ft.Row(
