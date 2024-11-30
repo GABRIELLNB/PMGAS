@@ -18,6 +18,7 @@ from models.Blogin import check_senha
 from menu import menu
 from login_ADM import login_adm
 
+
 def login(page: ft.Page):
     from register import register
     page.title = "PMGAS - Login"
