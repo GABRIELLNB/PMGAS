@@ -184,9 +184,19 @@ def perfil_adm(page: ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                ft.Text(value="PMGAS", weight="bold", size=30, color=ft.colors.WHITE),
+                ft.Container(height=5),
+                ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                controls=[
+                    ft.Image(
+                        src="image.png",  # Caminho local ou URL da imagem
+                        width=250,
+                        height=50,
+                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                    )
+                ]
+            ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content),
-                ft.Container(height=10),
                 ft.Row(
                     alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
