@@ -45,7 +45,7 @@ def sair_da_conta_adm(page: ft.Page):
                         controls=[
                             ft.ElevatedButton(
                                 "Sim",
-                                on_click=lambda e: print("Desconectado"),  # Aqui você pode adicionar a lógica para sair da conta
+                                on_click=lambda e:sair_conta(page, sair_dialog),  # Aqui você pode adicionar a lógica para sair da conta
                                 bgcolor=a1,
                                 color=b,
                             ),
@@ -71,6 +71,15 @@ def sair_da_conta_adm(page: ft.Page):
         # Fecha o diálogo
         sair_dialog.open = False
         page.update()  # Atualiza a página para refletir o fechamento do diálogo
+    
+    def sair_conta(page: ft.Page, sair_dialog: ft.AlertDialog):
+        from login_ADM import login_adm
+        # Fecha o diálogo
+        sair_dialog.open = False
+        page.update()
+        page.controls.clear()  # Limpa todo o conteúdo da página
+        page.add(login_adm(page))  # Adiciona a tela de login
+        page.update()  # Atualiza a página
 
     # Após fechar, reexibe a página de configurações
     from configuracoes_ADM import configuracoes_adm
