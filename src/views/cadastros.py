@@ -6,8 +6,11 @@ from pathlib import Path
 file = Path(__file__).resolve()
 parent = file.parent
 root = file.parent.parent  # Importações relativas
+
 sys.path.append(str(root))
 
+from models.Bcadastro_Areas import salvar_dados_Areas
+# Definição de cores
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
@@ -43,12 +46,54 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
 
 # Função de configuração
 def cadastros(page: ft.Page):
+    
     page.title = "PMGAS - Cadastros"
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
         page.update()  # Atualiza a página
+        
+    Nome_Proprietario_input = None
+    cnpj_input = None 
+    cep_input = None 
+    nome_empr_input = None
+    nature_input = None
+    porte_input = None
+    
+    def on_Nome_Proprietario_change(e):
+        nonlocal Nome_Proprietario_input
+        Nome_Proprietario_input = e.control.value
+        
+    def on_cnpj_change(e):
+        nonlocal cnpj_input
+        cnpj_input = e.control.value
+    
+    def on_cep_change(e):
+        nonlocal  cep_input
+        cep_input = e.control.value
+        
+    def on_nome_empr_change(e):
+        nonlocal nome_empr_input
+        nome_empr_input = e.control.value
+        
+    def on_nature_change(e):
+        nonlocal nature_input
+        nature_input = e.control.value
+        
+    def on_porte_change(e):
+        nonlocal porte_input
+        porte_input = e.control.value
+        
+    error_message = ft.Text(value="", color=ft.colors.RED)
+    
+    def update_error_message_Areas(msg):
+        error_message.value = msg
+        error_message.color = ft.colors.RED
+        page.update()
+        
+        
+    
 
     # Função para retornar a página de perfil
     def perfil_content():
@@ -145,6 +190,7 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_Nome_Proprietario_change
                                         ),
                                         CNPJ_input := ft.TextField(
                                             hint_text='CNPJ',
@@ -163,6 +209,7 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_cnpj_change
                                         ),
                                         CEP_input := ft.TextField(
                                             hint_text='CEP',
@@ -181,6 +228,7 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_cep_change
                                         ),
                                     ],
                                 ),
@@ -221,9 +269,10 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_nome_empr_change
                                         ),
-                                        nome_juridico_input := ft.TextField(
-                                            hint_text='Nome Jurídico',
+                                        Natureza_juridico_input := ft.TextField(
+                                            hint_text='Natureza Jurídico',
                                             prefix_icon=ft.icons.BUSINESS,
                                             text_vertical_align=-0.15,
                                             border=ft.InputBorder.UNDERLINE,
@@ -239,6 +288,7 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_nature_change
                                         ),
                                         porte_empresa_input := ft.TextField(
                                             hint_text='Porte da Empresa',
@@ -257,12 +307,13 @@ def cadastros(page: ft.Page):
                                                 weight='bold',
                                                 color=ft.colors.with_opacity(0.9, b)
                                             ),
+                                            on_change=on_porte_change
                                         ),
                                         
                                     ]
                                 ),
                             ),
-                            ft.Container(height=10),
+                            error_message,
                             # Botão de Cadastro
                             cad_button := ft.ElevatedButton(
                                 text='Cadastrar',
@@ -270,6 +321,9 @@ def cadastros(page: ft.Page):
                                 bgcolor=a2,
                                 width=1000,
                                 height=35,
+                                on_click=lambda e: salvar_dados_Areas(
+                                    Nome_Proprietario_input, cnpj_input, cep_input, nome_empr_input, nature_input, porte_input, update_error_message_Areas
+                                )
                             ),
                         ],
                     ),
