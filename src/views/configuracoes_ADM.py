@@ -60,16 +60,15 @@ def configuracoes_adm(page: ft.Page):
         from perfis_ADM import perfil_adm
         return perfil_adm(page)  # Página de perfil
     
-    def adm(id, email, senha):
+    def adm(nome, email, senha):
         return ft.Container(
             content=ft.Column(
                 controls=[
                     ft.Row(
                         alignment=ft.MainAxisAlignment.CENTER,
+                        spacing=142,
                         controls=[
-                            ft.Container(
-                                ft.Text(value=f"ID: {id}", weight='bold', size=20, color=a2),
-                            )
+                            ft.Text(value='ADM', weight='bold', size=20, color=a2),
                         ]
                     ),
                     ft.Row(
@@ -155,14 +154,8 @@ def configuracoes_adm(page: ft.Page):
                                     ),
                                 ]
                             ),
-                            ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                spacing=142,
-                                controls=[
-                                    ft.Text(value='ADM', weight='bold', size=20, color=a2),
-                                ]
-                            ),
-                            adm(id="151616", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
+                            
+                            adm( nome="", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
                             # Container com a palavra 'Notificações'
                             ft.Container(height=100),
                         
@@ -192,3 +185,4 @@ def configuracoes_adm(page: ft.Page):
             ]
         )
     return confg()
+

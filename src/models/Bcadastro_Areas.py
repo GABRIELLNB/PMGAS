@@ -3,6 +3,7 @@ import flet as ft
 import re  # Importa o módulo de expressões regulares
 from validate_docbr import CNPJ
 
+#BAIXAR pip install validate_docbr
 caminho = 'Areas Cadastradas - PMGAS.xlsx'
 
 def validar_cnpj(cnpj): #pip install cnpj-cpf-validator biblioteca de validação
