@@ -81,15 +81,26 @@ def configuracoes(page: ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
+                ft.Container(height=5),
+                ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                controls=[
+                    ft.Image(
+                        src="image.png",  # Caminho local ou URL da imagem
+                        width=250,
+                        height=50,
+                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                    )
+                ]
+            ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content), 
-                ft.Container(height=20),
                 ft.Container(
                     alignment=ft.alignment.top_center,  # Alinha o container ao topo central
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
                     width=1000,  # Largura do container
-                    height=630,
+                    height=625,
                     content=ft.Column(
                         spacing=20,
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
