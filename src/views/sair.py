@@ -16,6 +16,7 @@ b = "#FFFFFF"
 
 def sair_da_conta(page: ft.Page):
     
+    
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
@@ -51,7 +52,7 @@ def sair_da_conta(page: ft.Page):
                         controls=[
                             ft.ElevatedButton(
                                 "Sim",
-                                on_click=lambda e: print,  # Aqui você pode adicionar a lógica para sair da conta
+                                on_click=lambda e:sair_conta(page, sair_dialog) ,  # Aqui você pode adicionar a lógica para sair da conta
                                 bgcolor=a1,
                                 color=b,
                             ),
@@ -77,6 +78,15 @@ def sair_da_conta(page: ft.Page):
         # Fecha o diálogo
         sair_dialog.open = False
         page.update()  # Atualiza a página para refletir o fechamento do diálogo
+    
+    def sair_conta(page: ft.Page, sair_dialog: ft.AlertDialog):
+        from login import login
+        # Fecha o diálogo
+        sair_dialog.open = False
+        page.update()
+        page.controls.clear()  # Limpa todo o conteúdo da página
+        page.add(login(page))  # Adiciona a tela de login
+        page.update()  # Atualiza a página
 
     # Após fechar, reexibe a página de configurações
     from configuracoes import configuracoes
