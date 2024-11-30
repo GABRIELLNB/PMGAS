@@ -43,7 +43,6 @@ def main(page: ft.Page):
         page.controls.append(nova_tela)
         page.update()
         
-    # Funções para alternar entre telas
     def abrir_excluir(e: ft.ControlEvent):
         trocar_tela(excluir(page))
         
