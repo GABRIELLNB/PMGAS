@@ -8,7 +8,7 @@ root = file.parent.parent  # Importações relativas
 
 sys.path.append(str(root))
 
-from graficostempS import graficostempS
+
 
 a1 = "#7BD8D9",
 a2 = "#04282D",
@@ -69,20 +69,40 @@ def menu(page: ft.Page):
     def perfil_content():
         from perfil import perfil
         return perfil(page)
-
+    
     # Função para abrir a página flutuante de gráficos
+
     def abrir_graficosTP():
         graficos_dialog = ft.AlertDialog(
-            title=ft.Text("Informações sobre Gráficos", size=20, weight="bold"),
+            title=ft.Row(
+                controls=[
+                    ft.Container(
+                        on_click=lambda e: close_grf_dialog(page),  # Função para voltar ao menu
+                        content=ft.Icon(
+                            ft.icons.ARROW_BACK_IOS,
+                            size=24,
+                            color=a2,
+                        ),
+                    ),
+                    ft.Text(
+                        "Informações sobre Gráficos",
+                        size=20,
+                        weight="bold",
+                        color=a2,
+                    ),
+                ],
+                alignment=ft.MainAxisAlignment.START,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
             content=ft.Container(  
                 width=1000,
                 height=500,
                 content=ft.Column(
                     controls=[
                         ft.Text("Aqui vão as informações detalhadas sobre os gráficos."),
-                        ft.ElevatedButton("Fechar", on_click=lambda e: close_grf_dialog(page))
-                    ]
-                )
+                    ],
+                ),
+                
             )
         )
         page.dialog = graficos_dialog  # Definindo o Dialog na página
@@ -92,14 +112,32 @@ def menu(page: ft.Page):
     # Função para abrir a página flutuante de Aterros Ronald
     def abrir_GSgraficos():
         aterros_dialog = ft.AlertDialog(
-            title=ft.Text("Informações sobre Aterros Ronald", size=20, weight="bold"),
+            title=ft.Row(
+                controls=[
+                    ft.Container(
+                        on_click=lambda e: close_grf_dialog(page),  # Função para voltar ao menu
+                        content=ft.Icon(
+                            ft.icons.ARROW_BACK_IOS,
+                            size=24,
+                            color=a2,
+                        ),
+                    ),
+                    ft.Text(
+                        "Informações sobre Gráficos",
+                        size=20,
+                        weight="bold",
+                        color=a2,
+                    ),
+                ],
+                alignment=ft.MainAxisAlignment.START,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
             content=ft.Container(  
                 width=1000,
                 height=500,
                 content=ft.Column(
                     controls=[
                         ft.Text("Aqui vão as informações detalhadas sobre os Aterros Ronald."),
-                        ft.ElevatedButton("Fechar", on_click=lambda e: close_grf_dialog(page))
                     ]
                 )
             )
@@ -115,6 +153,11 @@ def menu(page: ft.Page):
 
     # Após fechar, reexibe a página de configurações
         update_content(menu_content())
+
+
+
+
+
         
     # Define o conteúdo da página inicial
     def inicio():
@@ -169,7 +212,7 @@ def menu(page: ft.Page):
                             height=200,
                             border_radius=10,
                             ink=True,
-                            on_click=lambda e: abrir_graficosTP()  # Abre o Dialog de Gráficos
+                            on_click=lambda e: abrir_graficosTP() # Abre o Dialog de Gráficos
                         ),
                         ft.Container(
                             content=ft.Text("Aterros Ronald"),
