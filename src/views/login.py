@@ -20,7 +20,7 @@ from login_ADM import login_adm
 
 
 def login(page: ft.Page):
-    from register import register
+    from register import Registro_User
     page.title = "PMGAS - Login"
     
     def update_content(content):
@@ -155,7 +155,7 @@ def login(page: ft.Page):
                                 ft.TextButton(
                                     style=ft.ButtonStyle(color=a2),
                                     text='Criar nova conta',
-                                    on_click=lambda e: update_content(register(page))  # Ação para ir para a tela de registro
+                                    on_click=lambda e: update_content(Registro_User(page))  # Ação para ir para a tela de registro
                                 )
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN

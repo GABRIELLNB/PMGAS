@@ -8,12 +8,8 @@ parent = file.parent
 root = file.parent.parent  # Importações relativas
 sys.path.append(str(root))
 
-from models.Blogin import importar_credenciais
-
-# Carregar credenciais
-caminho_arquivo = "Contas - PMGAS.xlsx"
-USER_CREDENTIALS, USER_NAMES = importar_credenciais(caminho_arquivo)
-
+from edit_perfil import edit_perfil
+from edit_area import edit_area
 
 a1 = "#7BD8D9"
 a2 = "#04282D"
@@ -51,12 +47,9 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
     elif opcao == 4:
         update_content(configuracoes_content())  # Exibe a página de configurações
 
-# Função de configuração
-def perfil(page: ft.Page, email):
-    from edit_perfil import edit_perfil
-    from edit_area import edit_area
-    from models.Blogin import check_email, check_senha
 
+# Função de configuração
+def perfil(page: ft.Page):
     
     page.title = "PMGAS - Perfil"
 
@@ -64,17 +57,10 @@ def perfil(page: ft.Page, email):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
         page.update()  # Atualiza a página
-    
-    if check_email(email):
-        nome = USER_NAMES[email]
-    else:
-        page.add(ft.Text("Usuário não encontrado"))
-        return
-
 
     # Função para retornar a página de perfil
     def perfil_content():
-        return perfil(page, email)
+        return perfil(page)
 
     # Funções de conteúdo para cada seção
     def configuracoes_content():
@@ -93,8 +79,7 @@ def perfil(page: ft.Page, email):
         from menu import menu
         return menu(page)
     
-     
-    def perfil(nome, email):
+    def perfil(nome, email, senha):
         return ft.Container(
             content=ft.Column(
                 controls=[
@@ -113,21 +98,21 @@ def perfil(page: ft.Page, email):
                             )
                         ]
                     ),
-                   """ ft.Row(
+                    ft.Row(
                         alignment=ft.MainAxisAlignment.CENTER,
                         controls=[
                             ft.Container(
                                 ft.Text(value=f"Senha: {senha}", size=16, color=a2)
                             )
                         ]
-                    ),"""
+                    ),
                 ],
             ),
         )
     
 
     # Função principal para montar a página de perfil
-    def perf(nome,email):
+    def perf():
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -187,10 +172,27 @@ def perfil(page: ft.Page, email):
                                     ),
                                 ]
                             ),
-                            perfil(nome, email),
+                            perfil(nome="151616", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
                             # Container com a palavra 'Notificações'
                             ft.Container(height=20),
-
+                            ft.ElevatedButton(
+                                bgcolor=a2,
+                                content=ft.Container(
+                                    padding=ft.padding.symmetric(horizontal=20, vertical=10),
+                                    on_click=lambda e: update_content(edit_area(page)),
+                                content=ft.Row(
+                                    controls=[
+                                        ft.Icon(ft.icons.EDIT_DOCUMENT, color=ft.colors.WHITE),
+                                        ft.Text("Editar Área", color=ft.colors.WHITE, weight="bold"),
+                                    ],
+                                    alignment=ft.MainAxisAlignment.START,
+                                    spacing=10,
+                                ),
+                                bgcolor=a2,
+                                width=1000,
+                                height=40,
+                                ),
+                            ),
                              ft.ElevatedButton(
                                 bgcolor=a2,
                                 content=ft.Container(
@@ -233,4 +235,4 @@ def perfil(page: ft.Page, email):
                 ),
             ],
         )
-    return perf(nome,email)
+    return perf()

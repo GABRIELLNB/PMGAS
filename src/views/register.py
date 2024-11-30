@@ -15,12 +15,11 @@ a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
-def register(page: ft.Page):
+def Registro_User (page: ft.Page):
     from login import login
     page.title = "PMGAS - Cadastro"
     
-
-
+    
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo

@@ -98,7 +98,7 @@ def perfil_adm(page: ft.Page):
                                 controls=[
                                     ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
                                     ft.Text(
-                                        value=f"Nome: {nome}",
+                                        value=f"Nome: {email}",
                                         style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
                                     ),
                                 ],
