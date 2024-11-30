@@ -63,9 +63,30 @@ def configuracoes_adm(page: ft.Page):
         return ft.Container(
             content=ft.Column(
                 controls=[
-                    ft.Text(value=f"ID: {id}", weight='bold', size=20, color=a2),
-                    ft.Text(value=f"Email: {email}", weight='bold', size=20, color=a2),
-                    ft.Text(value=f"Senha: {senha}", weight='bold', size=20, color=a2)
+                    ft.Row(
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        controls=[
+                            ft.Container(
+                                ft.Text(value=f"ID: {id}", weight='bold', size=20, color=a2),
+                            )
+                        ]
+                    ),
+                    ft.Row(
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        controls=[
+                            ft.Container(
+                                ft.Text(value=f"Email: {email}", weight='bold', size=20, color=a2),
+                            )
+                        ]
+                    ),
+                    ft.Row(
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        controls=[
+                            ft.Container(
+                                ft.Text(value=f"Senha: {senha}", weight='bold', size=20, color=a2)
+                            )
+                        ]
+                    ),
                 ],
             ),
         )
@@ -75,15 +96,26 @@ def configuracoes_adm(page: ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
+                ft.Container(height=5),
+                ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                controls=[
+                    ft.Image(
+                        src="image.png",  # Caminho local ou URL da imagem
+                        width=250,
+                        height=50,
+                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                    )
+                ]
+            ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content), 
-                ft.Container(height=20),
                 ft.Container(
                     alignment=ft.alignment.top_center,  # Alinha o container ao topo central
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
-                    width=1300,  # Largura do container
-                    height=630,
+                    width=1000,  # Largura do container
+                    height=600,
                     content=ft.Column(
                         spacing=20,
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
@@ -92,15 +124,6 @@ def configuracoes_adm(page: ft.Page):
                                 alignment=ft.MainAxisAlignment.END,
                                 spacing=15,
                                 controls=[
-                                    ft.Container(
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
-                                        content=ft.Icon(
-                                        ft.icons.NOTIFICATIONS,  # Ícone de notificação
-                                                size=35,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=a2  # Cor do ícone
-                                            ),
-                                        
-                                    ),
                                     ft.Container(
                                         on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
                                         content=ft.Icon(
@@ -140,124 +163,8 @@ def configuracoes_adm(page: ft.Page):
                             ),
                             adm(id="151616", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
                             # Container com a palavra 'Notificações'
-                            ft.Container(height=40),
-                            ft.Container(
-                                bgcolor=a2,  # Cor de fundo
-                                border_radius=20,  # Define borda arredondada para o container
-                                width=1300,  # Largura do container
-                                height=45,  # Altura do container
-                                padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                border=ft.border.all(2, a2),
-                                alignment=ft.alignment.center,
-                                content=ft.Column(
-                                    controls=[
-                                        ft.Row(
-                                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Distribui espaço entre os elementos
-                                            vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Centraliza verticalmente
-                                            wrap=True,
-                                            controls=[
-                                                ft.Icon(
-                                                    ft.icons.NOTIFICATIONS,  # Ícone de notificação
-                                                    size=20,  # Tamanho do ícone
-                                                    color=b  # Cor do ícone
-                                                ),
-                                                ft.Text(
-                                                    value='Notificações',
-                                                    weight='bold',
-                                                    size=15,
-                                                    color=b
-                                                ),
-                                                ft.Container(width=700),
-                                                ft.Switch(  # Coloca o switch para alternar a funcionalidade de notificações
-                                                    value=False,  # Estado inicial do switch
-                                                    on_change=lambda e: print(f"Notificações: {'Ativado' if e.control.value else 'Desativado'}"),
-                                                    active_color=a1,  # Cor do switch quando está ligado
-                                                    inactive_track_color=b  # Cor do switch quando desligado
-                                                ),
-                                            ]
-                                        ),
-                                    ]
-                                ),
-                            ),
-                            ft.Container(
-                                bgcolor=a2,  # Cor de fundo
-                                border_radius=20,  # Define borda arredondada para o container
-                                width=1300,  # Largura do container
-                                height=45,  # Altura do container
-                                padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                border=ft.border.all(2, a2),
-                                alignment=ft.alignment.center,
-                                content=ft.Column(
-                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
-                                    controls=[
-                                        ft.Row(
-                                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Distribui espaço entre os elementos
-                                            vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Centraliza verticalmente
-                                            wrap=True,
-                                            controls=[
-                                                ft.Icon(
-                                                    ft.icons.LOCATION_ON,  # Ícone de notificação
-                                                    size=20,  # Tamanho do ícone
-                                                    color=b  # Cor do ícone
-                                                ),
-                                                ft.Text(
-                                                    value='Localização',
-                                                    weight='bold',
-                                                    size=15,
-                                                    color=b
-                                                ),
-                                                ft.Container(width=700),
-                                                ft.Switch(  # Coloca o switch para alternar a funcionalidade de notificações
-                                                    value=False,  # Estado inicial do switch
-                                                    on_change=lambda e: print(f"Notificações: {'Ativado' if e.control.value else 'Desativado'}"),
-                                                    active_color=a1,  # Cor do switch quando está ligado
-                                                    inactive_track_color=b  # Cor do switch quando desligado
-                                                ),
-                                            ]
-                                        ),
-                                    ]
-                                ),
-                            ),
-                            # Adicionando mais containers para "Notificações"
-                            ft.Container(
-                                bgcolor=a2,  # Cor de fundo
-                                border_radius=20,  # Define borda arredondada para o container
-                                width=1300,  # Largura do container
-                                height=45,  # Altura do container
-                                padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                border=ft.border.all(2, a2),
-                                alignment=ft.alignment.center,
-                                content=ft.Column(
-                                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a coluna dentro do container
-                                    controls=[
-                                        ft.Row(
-                                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Distribui espaço entre os elementos
-                                            vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Centraliza verticalmente
-                                            wrap=True,
-                                            controls=[
-                                                ft.Icon(
-                                                    ft.icons.ARCHIVE,  # Ícone de notificação
-                                                    size=20,  # Tamanho do ícone
-                                                    color=b  # Cor do ícone
-                                                ),
-                                                ft.Text(
-                                                    value='Permitir Arquivos',
-                                                    weight='bold',
-                                                    size=15,
-                                                    color=b
-                                                ),
-                                                ft.Container(width=650),
-                                                ft.Switch(  # Coloca o switch para alternar a funcionalidade de notificações
-                                                    value=False,  # Estado inicial do switch
-                                                    on_change=lambda e: print(f"Notificações: {'Ativado' if e.control.value else 'Desativado'}"),
-                                                    active_color=a1,  # Cor do switch quando está ligado
-                                                    inactive_track_color=b  # Cor do switch quando desligado
-                                                ),
-                                            ]
-                                        ),
-                                    ]
-                                ),
-                            ),
+                            ft.Container(height=100),
+                        
 
                             ft.ElevatedButton(
                                 bgcolor=a2,
@@ -277,6 +184,7 @@ def configuracoes_adm(page: ft.Page):
                                 ),
                                 on_click=lambda e: update_content(sair_da_conta_adm(page)),
                             ),
+                            ft.Container(height=100),
                         ]
                     ),
                 ),
