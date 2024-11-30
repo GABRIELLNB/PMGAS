@@ -15,6 +15,7 @@ b = "#FFFFFF"
 from sair import sair_da_conta
 from ajuda import ajuda
 from sobre import sobre
+from modo_pro import mod_pro
 
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
@@ -127,7 +128,7 @@ def configuracoes(page: ft.Page):
                                         border_radius=50,  # Borda arredondada para formar o círculo
                                         width=100,  # Largura do círculo
                                         height=100,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        on_click=lambda e: update_content(mod_pro(page)),
                                         content=ft.Icon(
                                             ft.icons.PAID,  # Ícone de notificação
                                             size=40,  # Tamanho do ícone ajustado para maior visibilidade
