@@ -77,13 +77,24 @@ def cadastros(page: ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
+                ft.Container(height=5),
+                ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                controls=[
+                    ft.Image(
+                        src="image.png",  # Caminho local ou URL da imagem
+                        width=250,
+                        height=50,
+                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                    )
+                ]
+            ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
-                ft.Container(height=20),
                 ft.Container(
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     width=1000,
-                    height=630,  # Aumentei a altura para acomodar mais campos
+                    height=625,  # Aumentei a altura para acomodar mais campos
                     padding=ft.padding.all(10),
                     content=ft.Column(
                         controls=[
@@ -258,7 +269,7 @@ def cadastros(page: ft.Page):
                                 color=ft.colors.WHITE,
                                 bgcolor=a2,
                                 width=1000,
-                                height=40,
+                                height=35,
                             ),
                         ],
                     ),
