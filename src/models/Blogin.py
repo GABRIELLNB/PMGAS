@@ -10,6 +10,9 @@ root =  file.parent.parent  # Importações relativas
 
 sys.path.append(str(root))
 
+# Caminho do arquivo .xlsx
+caminho_arquivo = "Contas - PMGAS.xlsx"
+
 
 def importar_credenciais(caminho_arquivo):
     # Carregar o arquivo Excel
@@ -18,14 +21,18 @@ def importar_credenciais(caminho_arquivo):
     # Converter para dicionário onde o 'usuario' é a chave e 'senha' é o valor
     user_credentials = dict(zip(df['Email'], df['Senha']))
     
-    return user_credentials
+    # Converter o DataFrame para dicionário de nome
+    user_names = dict(zip(df['Email'], df['Nome']))
+    
+    return user_credentials, user_names
 
-# Caminho do arquivo .xlsx
-caminho_arquivo = "Contas - PMGAS.xlsx"
-USER_CREDENTIALS = importar_credenciais(caminho_arquivo)
+USER_CREDENTIALS, USER_NAMES = importar_credenciais(caminho_arquivo)
 
 def check_email(email):  # Verifica se o email existe
     return email in USER_CREDENTIALS
 
 def check_senha(email, senha):  # Verifica se a senha corresponde ao email informado
-    return USER_CREDENTIALS.get(email) == senha
+    if email in USER_CREDENTIALS:
+        if USER_CREDENTIALS[email] == senha:
+            return USER_NAMES[email]  # Retorna o nome associado ao email
+    return None
