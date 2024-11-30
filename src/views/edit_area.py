@@ -23,7 +23,7 @@ def edit_area(page: ft.Page):
 
     # Função principal para montar a página de edição de perfil
     def area():
-        from perfil import perfil
+        from areas_cadastradas import areas_cadastradas
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centraliza o conteúdo horizontalmente
@@ -42,7 +42,7 @@ def edit_area(page: ft.Page):
                                 content=ft.Row(
                                     controls=[
                                         ft.Container(
-                                            on_click=lambda e: update_content(perfil(page)),
+                                            on_click=lambda e: update_content(areas_cadastradas(page)),
                                             content=ft.Icon(
                                                 ft.icons.ARROW_BACK_IOS,
                                                 size=24,
