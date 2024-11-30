@@ -13,6 +13,7 @@ a2 = "#04282D"
 b = "#FFFFFF"
 
 from sair_ADM import sair_da_conta_adm
+from edit_perfil_ADM import edit_perfil_adm
 
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content):
@@ -125,7 +126,7 @@ def configuracoes_adm(page: ft.Page):
                                 spacing=15,
                                 controls=[
                                     ft.Container(
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        on_click=lambda e: update_content(edit_perfil_adm(page)),
                                         content=ft.Icon(
                                         ft.icons.EDIT_SQUARE,  # Ícone de notificação
                                                 size=40,  # Tamanho do ícone ajustado para maior visibilidade
