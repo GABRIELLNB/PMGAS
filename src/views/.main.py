@@ -17,6 +17,8 @@ from perfis_ADM import perfil_adm
 from configuracoes_ADM import configuracoes_adm
 from menu_outra_ADM  import menu_outra_ADM
 from excluir import excluir
+from edit_perfil_ADM import edit_perfil_adm
+from modo_pro import mod_pro
 import sys
 from pathlib import Path
 
@@ -42,6 +44,12 @@ def main(page: ft.Page):
         page.controls.clear()
         page.controls.append(nova_tela)
         page.update()
+        
+    def abrir_modo_pro(e: ft.ControlEvent):
+        trocar_tela(mod_pro(page))
+        
+    def abrir_edit_perf_adm(e: ft.ControlEvent):
+        trocar_tela(edit_perfil_adm(page))
         
     def abrir_excluir(e: ft.ControlEvent):
         trocar_tela(excluir(page))
