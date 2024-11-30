@@ -17,16 +17,17 @@ def register(page: ft.Page):
     # Layout da tela de registro
     register = ft.Column(
         controls=[
-               ft.Text(
-                value='PMGAS',
-                weight='bold',
-                size=30,
-                color=ft.colors.WHITE,
-            ),
+               ft.Image(
+                    src="image.png",  # Caminho local ou URL da imagem
+                    width=300,  # Largura da imagem
+                    height=100,  # Altura da imagem
+                    fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
+                ),
             ft.Container(
                 bgcolor=ft.colors.WHITE,
                 border_radius=10,
-                width=400,
+                height=400,
+                width=500,
                 padding=ft.padding.all(10),
                 content=ft.Column(
                     controls=[
@@ -121,7 +122,7 @@ def register(page: ft.Page):
                             text='Registrar',
                             color=ft.colors.WHITE,
                             bgcolor=a2,
-                            width=400,
+                            width=500,
                             height=40
                         ),
                         ft.Row(
