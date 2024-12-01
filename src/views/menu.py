@@ -42,7 +42,7 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
         update_content(configuracoes_content())
 
 def menu(page: ft.Page):
-    from mapa import mapa
+
     # Define o título da página
     page.title = "PMGAS - Menu"
     
