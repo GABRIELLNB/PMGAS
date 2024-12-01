@@ -20,16 +20,17 @@ b = "#FFFFFF"
 
 # Função de configuração
 def areas_cadastradas(page: ft.Page):
-    from perfil import perfil
+    from perfil import perfil_us
     page.title = "PMGAS - Perfis"
-
+    
     def update_content(content):
-        page.controls.clear()
         if isinstance(content, ft.Control):
+            page.controls.clear()
             page.controls.append(content)
+            page.update()  # Atualiza a página com o novo conteúdo
         else:
             page.controls.append(ft.Text("Erro ao carregar conteúdo.", color="red"))
-        page.update()
+            page.update()
 
     def carregar_areas_dados():
         """
@@ -210,30 +211,35 @@ def areas_cadastradas(page: ft.Page):
                 ft.Container(height=5),
                 ft.Container(
                     alignment=ft.alignment.center,  # Alinha o título no centro
-                    content=ft.Row(
+                    content=ft.Column(
                         controls=[
-                            ft.Container(
-                                on_click=lambda e: update_content(perfil(page)),
-                                content=ft.Icon(
-                                    ft.icons.ARROW_BACK_IOS,
-                                    size=24,
-                                    color=b,
-                                ),
+                            ft.Row(
+                                controls=[
+                                    ft.Container(
+                                        on_click=lambda e: 
+                                            update_content(perfil_us(page)),
+                                        content=ft.Icon(
+                                            ft.icons.ARROW_BACK_IOS,
+                                            size=24,
+                                            color=b,
+                                        ),
+                                    ),
+                                    ft.Container(width=500),
+                                    ft.Icon(ft.icons.EDIT_SQUARE, size=24, color=b),
+                                    ft.Text(
+                                        value="Áreas Cadastradas",
+                                        weight="bold",
+                                        size=20,
+                                        color=b,
+                                    ),
+                                    ft.Container(width=550),
+                                ],
+                                alignment=ft.MainAxisAlignment.CENTER,  # Alinha o conteúdo da Row
+                                spacing=10,  # Espaço entre os elementos da Row
                             ),
-                            ft.Container(width=500),
-                            ft.Icon(ft.icons.EDIT_SQUARE, size=24, color=b),
-                            ft.Text(
-                                value="Áreas Cadastradas",
-                                weight="bold",
-                                size=20,
-                                color=b,
-                            ),
-                            ft.Container(width=550),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.CENTER,  # Alinha o conteúdo da Row
-                                    spacing=10,  # Espaço entre os elementos da Row
-                                ),
-                            ),
+                        ],
+                    ),
+                ),
                 ft.Row(
                     alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
@@ -264,7 +270,6 @@ def areas_cadastradas(page: ft.Page):
                             width=1000,  # Ajusta a largura do SearchBar
                         ),
                         ft.Container(width=260),
-                        
                     ],
                 ),
                 ft.Divider(
@@ -274,11 +279,11 @@ def areas_cadastradas(page: ft.Page):
                 ),
                 ft.Container(height=10),
                 area_layout(nome, natureza, porte, cnpj, cep, nome_empresa),
-            ],
+            ]
         )
 
     # Carregar os dados e renderizar a página
     area_dados = carregar_areas_dados()
     update_content(area_page(**area_dados))
 
-    return page
+    return area_page()
