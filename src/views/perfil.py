@@ -148,24 +148,7 @@ def perfil(page: ft.Page):
                                 ]
                             ),
                             carregar_perfil(),  # Carrega o perfil
-                            # Botões de ação
-                            ft.ElevatedButton(
-                                bgcolor=a2,
-                                content=ft.Container(
-                                    padding=ft.padding.symmetric(horizontal=20, vertical=10),
-                                    on_click=lambda e: update_content(edit_area(page)),
-                                    content=ft.Row(
-                                        controls=[
-                                            ft.Icon(ft.icons.EDIT_DOCUMENT, color=ft.colors.WHITE),
-                                            ft.Text("Editar Área", color=ft.colors.WHITE, weight="bold"),
-                                        ],
-                                        alignment=ft.MainAxisAlignment.START,
-                                        spacing=10,
-                                    ),
-                                ),
-                                width=1000,
-                                height=40,
-                            ),
+    
                             ft.ElevatedButton(
                                 bgcolor=a2,
                                 content=ft.Container(
