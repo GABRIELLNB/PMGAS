@@ -10,6 +10,7 @@ sys.path.append(str(root))
 
 from edit_perfil import edit_perfil
 from edit_area import edit_area
+from models.ADM_perfis import ler_perfis_excel
 
 a1 = "#7BD8D9"
 a2 = "#04282D"
@@ -42,6 +43,9 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
 def perfil_adm(page: ft.Page):
     
     page.title = "PMGAS - Perfis"
+    
+    caminho_arquivo = "Contas - PMGAS.xlsx"
+    perfis = ler_perfis_excel(caminho_arquivo)
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
@@ -61,7 +65,7 @@ def perfil_adm(page: ft.Page):
         from menu_ADM import menu_adm
         return menu_adm(page)  # Página de cadastros
     
-    def perfis(email, nome, cpf, senha, cadastros):
+    def perfis_content(email, nome, cpf, senha, cadastros):
         return ft.Container(
         bgcolor=ft.colors.WHITE,
         border_radius=10,
@@ -98,7 +102,7 @@ def perfil_adm(page: ft.Page):
                                 controls=[
                                     ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
                                     ft.Text(
-                                        value=f"Nome: {email}",
+                                        value=f"Nome: {nome}",
                                         style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
                                     ),
                                 ],
@@ -175,9 +179,8 @@ def perfil_adm(page: ft.Page):
             ],
         ),
     )
-
         
-
+    search_term = ""
     # Função principal para montar a página de perfil
     def perf():
         return ft.Column(
@@ -249,9 +252,9 @@ def perfil_adm(page: ft.Page):
                     thickness=1,
                 ),
                 ft.Container(height=10),
-                perfis(email="ass", nome="assd",cpf="asdffdgf" ,senha="dsfds",cadastros="aasfgdf" ),
-                perfis(email="ass", nome="assd",cpf="asdffdgf" ,senha="dsfds",cadastros="aasfgdf" ),
+                *[perfis_content(p["Email"], p["Nome"], p["CPF"], p["Senha"], p["Cadastros"]) for p in perfis],  # Exibe todos os perfis
             ],
         )
+    
 
-    return perf()
+    update_content(perf())
