@@ -9,7 +9,7 @@ parent = file.parent
 root = file.parent.parent  # Importações relativas
 sys.path.append(str(root))
 
-from edit_perfil import edit_perfil
+
 from edit_area import edit_area
 from areas_cadastradas import areas_cadastradas
 
@@ -51,7 +51,8 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
         update_content(configuracoes_content())  
 
 # Função de configuração
-def perfil(page: ft.Page):
+def perfil_us(page: ft.Page):
+    from edit_perfil import edit_perfil
     page.title = "PMGAS - Perfil"
 
     def update_content(content):
@@ -81,10 +82,10 @@ def perfil(page: ft.Page):
         return ft.Container(
             content=ft.Column(
                 controls=[
-                    ft.Text(value=f"Nome: {nome}", weight="bold", size=20, color=a2),
-                    ft.Text(value=f"Email: {email}", size=16, color=a2),
-                    ft.Text(value=f"CPF: {cpf}", size=16, color=a2),
-                    ft.Text(value=f"Senha: {'*' * len(senha)}", size=16, color=a2),
+                    ft.Text(value=f"  Nome: {nome}", weight="bold", size=20, color=a2, text_align=ft.TextAlign.CENTER,),
+                    ft.Text(value=f"     Email: {email}", size=16, color=a2),
+                    ft.Text(value=f"     CPF: {cpf}", size=16, color=a2),
+                    ft.Text(value=f"     Senha: {'*' * len(senha)}", size=16, color=a2),
                 ],
             ),
         )
@@ -147,8 +148,13 @@ def perfil(page: ft.Page):
                                     ),
                                 ]
                             ),
-                            carregar_perfil(),  # Carrega o perfil
-    
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                spacing=20,  # Adjusted spacing
+                                controls=[
+                                    carregar_perfil(),  # Carrega o perfil
+                                ],
+                            ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
                                 content=ft.Container(
@@ -194,14 +200,29 @@ def perfil(page: ft.Page):
     def carregar_perfil():
         from models.Bregister import buscar_perfil
         df = pd.read_excel(caminho)
-        cpf_usuario = df['CPF'].iloc[0]  # Pega o primeiro CPF (ajustar conforme sua lógica)
-        perfil = buscar_perfil(cpf_usuario)
+        
+        email_logado = page.session.get("user_email")
     
-        if perfil:
-            return perfil_content(perfil["Nome"], perfil["Email"], perfil["CPF"], perfil["Senha"])
-        else:
-            return ft.Text("Perfil não encontrado!", size=20, color="red")
+    
+        # Lê o arquivo Excel
+        df = pd.read_excel(caminho)
 
+        # Filtra o DataFrame para encontrar o perfil do usuário logado pelo e-mail
+        perfil = df[df['Email'] == email_logado]
+
+        # Verifica se o perfil foi encontrado
+        if not perfil.empty:
+            # Se o perfil for encontrado, retorna as informações com perfil_content
+            perfil_info = perfil.iloc[0]  # Obtém a primeira linha do perfil encontrado
+            return perfil_content(perfil_info["Nome"], perfil_info["Email"], perfil_info["CPF"], perfil_info["Senha"])
+        else:
+            # Caso o perfil não seja encontrado
+            return ft.Text("Perfil não encontrado!", size=20, color="red")
+        
     # Atualiza o conteúdo com o perfil carregado
-    update_content(carregar_perfil())
+    # Carrega o perfil com o e-mail logado
+    perfil_info = carregar_perfil()
+    
+    # Atualiza o conteúdo da página com as informações do perfil
+    update_content(perfil_info)
     return perf()
