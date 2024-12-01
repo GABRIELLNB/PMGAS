@@ -5,7 +5,7 @@ from menu import menu
 from cadastros import cadastros
 from configuracoes import configuracoes
 from graficos import graficos
-from perfil import perfil
+from perfil import perfil_us
 from ajuda import ajuda
 from sobre import sobre
 from sair import sair_da_conta
@@ -101,7 +101,7 @@ def main(page: ft.Page):
         
     # Funções para alternar entre telas
     def abrir_perfil(e: ft.ControlEvent):
-        trocar_tela(perfil(page))
+        trocar_tela(perfil_us(page))
 
     def abrir_graficos(e: ft.ControlEvent):
         trocar_tela(graficos(page))
