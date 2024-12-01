@@ -31,14 +31,14 @@ def ajuda(page: ft.Page):
                 ft.Text(
                     "ENTRE EM CONTATO CONOSCO!",
                     size=16,
-                    color=a2,
+                    color=b,
                     text_align=ft.TextAlign.JUSTIFY,
                 ),
                 ft.Container(height=20),
                 ft.Text(
                     "E-MAIL :\n Pmgas@hotmail.com",
                     size=16,
-                    color=a2,
+                    color=b,
                     text_align=ft.TextAlign.JUSTIFY,
                 ),
                 ft.Divider(
@@ -47,9 +47,9 @@ def ajuda(page: ft.Page):
                     thickness=1
                 ),
                 ft.Text(
-                    "TELEFONE:\n+55(71)9********",
+                    "TELEFONE:\n+55(71)993634037",
                     size=16,
-                    color=a2,
+                    color=b,
                     text_align=ft.TextAlign.JUSTIFY,
                 ),
                 

@@ -29,7 +29,7 @@ def sobre(page: ft.Page):
                 "facilitando a gestão ambiental e a prevenção de riscos ecológicos. "
                 "Desenvolvido por estudantes de Engenharia de Computação.",
                 size=16,
-                color=a2,
+                color=b,
                 text_align=ft.TextAlign.JUSTIFY,
             ),
         ),
