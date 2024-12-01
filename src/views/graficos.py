@@ -1,6 +1,8 @@
 import flet as ft
 import sys
 from pathlib import Path
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # Caminho relativo para importar módulos
 file = Path(__file__).resolve()
@@ -12,6 +14,7 @@ a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
+from models.Bgrafico import grs_ano
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
     
@@ -76,6 +79,12 @@ def graficos(page: ft.Page):
 
     # Função principal para montar a página de perfil
     def graf():
+        def gerar_grafico():
+            grs_ano()  # Chama a função grs_ano() para gerar o gráfico e salvar a imagem
+
+        # Gera o gráfico uma vez (se não for gerado anteriormente)
+        gerar_grafico()
+
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -114,29 +123,14 @@ def graficos(page: ft.Page):
                                 color=ft.colors.with_opacity(0.25, a2),
                                 thickness=1
                             ),
-                            ft.Container(
-                                width=400,  # Reduzido para ficar menor e mais harmônico
-                                height=150,
-                                bgcolor=a2,
-                                alignment=ft.alignment.center,
-                                border_radius=10  # Bordas arredondadas para melhorar o design
+                           
+                            ft.Image(
+                                src="grafico_bahia.png",  # Caminho local ou URL da imagem
+                                width=700,  # Largura da imagem
+                                height=400,  # Altura da imagem
+                                fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
                             ),
-                            ft.Container(
-                            alignment=ft.alignment.top_left,  # Alinha o texto no canto superior esquerdo
-                            content=ft.Text(value='Gráficos - 2024', weight='bold', size=20, color=a2)
-                            ),
-                            ft.Divider(
-                                height=1,
-                                color=ft.colors.with_opacity(0.25, a2),
-                                thickness=1
-                            ),
-                            ft.Container(
-                                width=400,  # Reduzido para ficar menor e mais harmônico
-                                height=150,
-                                bgcolor=a2,
-                                alignment=ft.alignment.center,
-                                border_radius=10  # Bordas arredondadas para melhorar o design
-                            ),
+                            
                         ],
                     ),
                 ),
