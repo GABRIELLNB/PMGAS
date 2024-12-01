@@ -79,12 +79,6 @@ def graficos(page: ft.Page):
 
     # Função principal para montar a página de perfil
     def graf():
-        def gerar_grafico():
-            grs_ano()  # Chama a função grs_ano() para gerar o gráfico e salvar a imagem
-
-        # Gera o gráfico uma vez (se não for gerado anteriormente)
-        gerar_grafico()
-
         return ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
