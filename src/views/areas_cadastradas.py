@@ -67,16 +67,137 @@ def areas_cadastradas(page: ft.Page):
         """
         Retorna o layout da área com as informações fornecidas.
         """
-        return ft.Column(
+        return ft.Container(
+        bgcolor=ft.colors.WHITE,
+        border_radius=10,
+        width=1000,
+        height=400,
+        padding=ft.padding.all(10),
+        content=ft.Column(
             controls=[
-                ft.Text(value=f"Nome: {nome}", size=20),
-                ft.Text(value=f"Natureza Jurídica: {natureza}", size=16),
-                ft.Text(value=f"Porte da Empresa: {porte}", size=16),
-                ft.Text(value=f"CNPJ: {cnpj}", size=16),
-                ft.Text(value=f"CEP: {cep}", size=16),
-                ft.Text(value=f"Nome do Proprietário: {nome_empresa}", size=16),
-            ]
-        )
+                ft.Container(
+                    bgcolor=b,
+                    padding=ft.padding.all(10),
+                    border_radius=10,
+                    width=1300,
+                    height=300,
+                    content=ft.Column(
+                        controls=[
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.PERSON, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Nome: {nome}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Natureza Juridica: : {natureza}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Porte da Empresa:: {porte}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.CONTACT_PAGE, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"CNPJ: {cnpj}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.LOCATION_CITY, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"CEP: {cep}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Row(
+                                alignment=ft.MainAxisAlignment.START,
+                                controls=[
+                                    ft.Icon(ft.icons.LOCATION_CITY, color=ft.colors.with_opacity(0.9, a2), size=20),
+                                    ft.Text(
+                                        value=f"Nome da empresa: {nome_empresa}",
+                                        style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
+                                    ),
+                                ],
+                            ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1,
+                            ),
+                            ft.Container(
+                                ft.Row(
+                                    alignment=ft.MainAxisAlignment.END,
+                                    spacing=10,
+                                    controls=[
+                                        ft.Container(
+                                            content=ft.Icon(
+                                                ft.icons.EDIT_SQUARE,
+                                                size=24,
+                                                color=a2,
+                                            ),
+                                            on_click=lambda e: update_content(edit_area(page))
+                                            
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ],
+                    ),
+                ),
+                ft.Container(height=10),
+            ],
+        ),
+    )
+
 
     def area_page(nome, natureza, porte, cnpj, cep, nome_empresa):
         """
@@ -88,7 +209,7 @@ def areas_cadastradas(page: ft.Page):
             controls=[
                 ft.Container(height=5),
                 ft.Container(
-                    alignment=ft.alignment.center,
+                    alignment=ft.alignment.center,  # Alinha o título no centro
                     content=ft.Row(
                         controls=[
                             ft.Container(
@@ -99,17 +220,58 @@ def areas_cadastradas(page: ft.Page):
                                     color=b,
                                 ),
                             ),
+                            ft.Container(width=500),
+                            ft.Icon(ft.icons.EDIT_SQUARE, size=24, color=b),
                             ft.Text(
                                 value="Áreas Cadastradas",
                                 weight="bold",
                                 size=20,
                                 color=b,
                             ),
-                        ],
-                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                    ),
+                            ft.Container(width=550),
+                                    ],
+                                    alignment=ft.MainAxisAlignment.CENTER,  # Alinha o conteúdo da Row
+                                    spacing=10,  # Espaço entre os elementos da Row
+                                ),
+                            ),
+                ft.Row(
+                    alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
+                    controls=[
+                        # SearchBar
+                        ft.Container(height=15),
+                        ft.Container(
+                            bgcolor=ft.colors.WHITE,
+                            padding=ft.padding.symmetric(horizontal=10, vertical=5),
+                            border_radius=15,
+                            content=ft.Row(
+                                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(ft.icons.SEARCH, color=ft.colors.GREY),
+                                    ft.TextField(
+                                        hint_text="Buscar...",
+                                        border=ft.InputBorder.NONE,
+                                        cursor_color=ft.colors.BLACK,
+                                        text_style=ft.TextStyle(
+                                            size=16, color=ft.colors.BLACK
+                                        ),
+                                        expand=True,
+                                    ),
+                                    ft.Icon(ft.icons.CLOSE, color=ft.colors.GREY),
+                                ],
+                            ),
+                            width=1000,  # Ajusta a largura do SearchBar
+                        ),
+                        ft.Container(width=260),
+                        
+                    ],
                 ),
-                ft.Divider(height=1, color=ft.colors.with_opacity(0.25, ft.colors.GREY), thickness=1),
+                ft.Divider(
+                    height=1,
+                    color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                    thickness=1,
+                ),
                 ft.Container(height=10),
                 area_layout(nome, natureza, porte, cnpj, cep, nome_empresa),
             ],
