@@ -8,13 +8,14 @@ from validate_docbr import CPF
 # Caminho para o arquivo Excel
 caminho = "Contas - PMGAS.xlsx"
 
-def buscar_perfil(cpf):
-   
+def buscar_perfil(email):
     df = pd.read_excel(caminho)
-    perfil = df[df['CPF'] == df['CPF'].iloc[0]]  # Filtra o DataFrame para o CPF fornecido
+    # Filtra o DataFrame para o e-mail fornecido
+    perfil = df[df['Email'] == email]
     
     if not perfil.empty:
-        return perfil.iloc[0].to_dict()  # Retorna o perfil como um dicionário
+        # Retorna o perfil como um dicionário
+        return perfil.iloc[0].to_dict()  
     else:
         return None
 
