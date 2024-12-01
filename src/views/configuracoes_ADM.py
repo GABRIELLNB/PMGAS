@@ -1,6 +1,7 @@
 import flet as ft
 import sys
 from pathlib import Path
+import pandas as pd
 
 # Caminho relativo para importar módulos
 file = Path(__file__).resolve()
@@ -11,6 +12,8 @@ sys.path.append(str(root))
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
+
+caminho = "Contas - PMGAS - ADM.xlsx"
 
 from sair_ADM import sair_da_conta_adm
 from edit_perfil_ADM import edit_perfil_adm
@@ -68,7 +71,9 @@ def configuracoes_adm(page: ft.Page):
                         alignment=ft.MainAxisAlignment.CENTER,
                         spacing=142,
                         controls=[
-                            ft.Text(value='ADM', weight='bold', size=20, color=a2),
+                            ft.Container(
+                                ft.Text(value=f"Nome: {nome}", weight='bold', size=20, color=a2),
+                            )
                         ]
                     ),
                     ft.Row(
@@ -155,7 +160,7 @@ def configuracoes_adm(page: ft.Page):
                                 ]
                             ),
                             
-                            adm( nome="", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
+                            carregar_perfil(),
                             # Container com a palavra 'Notificações'
                             ft.Container(height=100),
                         
@@ -184,5 +189,34 @@ def configuracoes_adm(page: ft.Page):
                 ),
             ]
         )
+            # Função para carregar o perfil
+    def carregar_perfil():
+        from models.Bregister import buscar_perfil
+        df = pd.read_excel(caminho)
+        
+        email_logado = page.session.get("user_email")
+    
+    
+        # Lê o arquivo Excel
+        df = pd.read_excel(caminho)
+
+        # Filtra o DataFrame para encontrar o perfil do usuário logado pelo e-mail
+        perfil = df[df['Email'] == email_logado]
+
+        # Verifica se o perfil foi encontrado
+        if not perfil.empty:
+            # Se o perfil for encontrado, retorna as informações com perfil_content
+            perfil_info = perfil.iloc[0]  # Obtém a primeira linha do perfil encontrado
+            return adm(perfil_info["Nome"], perfil_info["Email"], perfil_info["Senha"])
+        else:
+            # Caso o perfil não seja encontrado
+            return ft.Text("Perfil não encontrado!", size=20, color="red")
+        
+    # Atualiza o conteúdo com o perfil carregado
+    # Carrega o perfil com o e-mail logado
+    perfil_info = carregar_perfil()
+    
+    # Atualiza o conteúdo da página com as informações do perfil
+    update_content(perfil_info)
     return confg()
 
