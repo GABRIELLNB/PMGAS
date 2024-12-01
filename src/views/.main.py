@@ -101,7 +101,7 @@ def main(page: ft.Page):
         
     # Funções para alternar entre telas
     def abrir_perfil(e: ft.ControlEvent):
-        trocar_tela(perfil(page, email))
+        trocar_tela(perfil(page))
 
     def abrir_graficos(e: ft.ControlEvent):
         trocar_tela(graficos(page))
