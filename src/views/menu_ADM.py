@@ -13,7 +13,7 @@ root = file.parent.parent
 sys.path.append(str(root))
 
 from excluir import excluir
-
+from models.ADM_cads import ler_perfis_excel
 
 # Cria a barra de navegação personalizada
 def navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content):
@@ -46,7 +46,10 @@ def menu_adm(page: ft.Page):
     # Configuração da página
     page.title = "PMGAS - Menu"
     page.scroll = True
-
+    
+    caminho_arquivo = "Areas Cadastradas - PMGAS.xlsx"
+    cadast = ler_perfis_excel(caminho_arquivo)
+    
     def update_content(content):
         page.controls.clear()
         page.controls.append(content)
@@ -65,7 +68,7 @@ def menu_adm(page: ft.Page):
         from perfis_ADM import perfil_adm
         return perfil_adm(page)
     
-    def cad(nome_proprietario, nome_juridico, porte_empresa, cnpj, cep, area):
+    def cad_content(nome_proprietario, nome_juridico, porte_empresa, cnpj, cep, area):
         return ft.Container(
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
@@ -78,7 +81,7 @@ def menu_adm(page: ft.Page):
                             # Dados da área
                             ft.Container(
                                 alignment=ft.alignment.center,
-                                content=ft.Text(value=f"DADOS DA ÁREA {area}", weight="bold", size=20, color=a2),
+                                content=ft.Text(value=f"DADOS DA ÁREA: {area}", weight="bold", size=20, color=a2),
                             ),
                             ft.Divider(
                                 height=1,
@@ -267,7 +270,7 @@ def menu_adm(page: ft.Page):
                     thickness=1,
                 ),
                 ft.Container(height=10),
-                cad(nome_proprietario= "sa", nome_juridico="as", porte_empresa="as", cnpj="as", cep="as",area="xxxxxxxxxxxxxxx"),
+                *[cad_content(p["Nome Proprietario"], p["CNPJ"], p["CEP"], p["Nome da empresa"], p["Natureza Juridica"], p["Porte"]) for p in cadast],  # Exibe todos os perfis
             ],
         )
 
