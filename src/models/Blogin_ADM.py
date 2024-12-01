@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 import pandas as pd
+from validate_docbr import CPF
 
 file = Path(__file__).resolve()
 parent = file.parent
@@ -27,3 +28,19 @@ def check_email(email): #Verifica se o email existe
 
 def check_senha(email, senha): #Verifica se a senha corresponde ao email informado
     return USER_CREDENTIALS.get(email) == senha
+
+
+
+
+
+
+def buscar_perfil(email):
+    df = pd.read_excel(caminho_arquivo)
+    # Filtra o DataFrame para o e-mail fornecido
+    perfil = df[df['Email'] == email]
+    
+    if not perfil.empty:
+        # Retorna o perfil como um dicionário
+        return perfil.iloc[0].to_dict()  
+    else:
+        return None
