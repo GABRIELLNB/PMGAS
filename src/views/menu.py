@@ -1,8 +1,7 @@
 import flet as ft
 import sys
 from pathlib import Path
-
-
+import flet.map as map  # Adicionando o import necessário para o mapa
 
 file = Path(__file__).resolve()
 parent = file.parent
@@ -10,10 +9,8 @@ root = file.parent.parent  # Importações relativas
 
 sys.path.append(str(root))
 
-
-
-a1 = "#7BD8D9",
-a2 = "#04282D",
+a1 = "#7BD8D9"
+a2 = "#04282D"
 b = "#FFFFFF"
 
 # Cria a barra de navegação personalizada
@@ -29,10 +26,8 @@ def navigation_bar(update_content, configuracoes_content, cadastros_content, gra
         ],
         on_change=lambda e: escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content)
     )
-from models.Bmenu_mapa import Maps
+
 def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, inicio_content):
-    
-    
     opcao = e.control.selected_index
     
     if opcao == 0:
@@ -47,6 +42,7 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
         update_content(configuracoes_content())
 
 def menu(page: ft.Page):
+    from mapa import mapa
     # Define o título da página
     page.title = "PMGAS - Menu"
     
@@ -75,7 +71,6 @@ def menu(page: ft.Page):
         return perfil(page)
     
     # Função para abrir a página flutuante de gráficos
-
     def abrir_graficosTP():
         graficos_dialog = ft.AlertDialog(
             title=ft.Row(
@@ -155,86 +150,126 @@ def menu(page: ft.Page):
         page.dialog.open = False  # Fecha o diálogo
         page.update()  # Atualiza a página
 
-    # Após fechar, reexibe a página de configurações
+        # Após fechar, reexibe a página de configurações
         update_content(menu_content())
+    
+    page.window.always_on_top = True
 
-
-
-
-
-        
-    # Define o conteúdo da página inicial
-    def inicio():
-  
-        return ft.Column(
+    def handle_tap(e: map.MapTapEvent):
+        print(e)
+    
+    def create_map():
+        page.add(
+            ft.Column(
             controls=[
                 ft.Container(height=5),
                 ft.Row(
-                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
-                controls=[
-                    ft.Image(
-                        src="image.png",  # Caminho local ou URL da imagem
-                        width=250,
-                        height=50,
-                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
-                    )
-                ]
-            ),
+                    alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                    controls=[
+                        ft.Image(
+                            src="image.png",  # Caminho local ou URL da imagem
+                            width=250,
+                            height=50,
+                            fit=ft.ImageFit.CONTAIN,  # Mantém proporção
+                        )
+                    ]
+                ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
                 ft.Container(height=20),
-                ft.Row(
-                    alignment=ft.MainAxisAlignment.CENTER,
-                    controls=[  
-                        ft.Container(
-                            alignment=ft.alignment.top_center,
-                            bgcolor=ft.colors.WHITE,
-                            border_radius=10,
-                            padding=ft.padding.all(10),
-                            width=800,
-                            height=350,
-                            content=ft.Column(
-                                controls=[
-                                    ft.Text(
-                                        value='HELLO',
-                                        weight='bold',
-                                        size=20,
-                                        color=ft.colors.BLACK
-                                    ),
-                                ]
-                            ),
-                        ),
+            ],
+            ),
+            
+            ft.Container(
+                height=380,  # Adjust the height as needed
+                width=1000,   # Adjust the width as needed
+                border_radius=15,
+                content=map.Map(
+            configuration=map.MapConfiguration(
+                on_init=lambda e: print("Map Init"),
+                on_tap=handle_tap,
+                on_long_press=handle_tap,
+            ),
+            layers=[
+                map.TileLayer(
+                    url_template="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    on_image_error=lambda e: print("Image Error"),
+                ),
+                map.CircleLayer(
+                    circles=[
+                        map.CircleMarker(
+                            radius=20,
+                            coordinates=map.MapLatitudeLongitude(-12.9714, -38.5014),
+                            color=ft.colors.BLUE,
+                            border_color=ft.colors.random_color(),
+                            border_stroke_width=5,
+                        )
                     ]
-                ),        
-                ft.Row(
+                ),
+
+                map.MarkerLayer(
+                    markers=[
+                        map.Marker(
+                            content=ft.Icon(
+                                ft.icons.random_icon(),
+                                color=ft.colors.random_color(),
+                                size=30,
+                            ),
+                            coordinates=map.MapLatitudeLongitude(35, 35),
+                        )
+                    ]
+                ),
+                map.RichAttribution(
+                    alignment=ft.alignment.top_center,
+                    attributions=[
+                        map.TextSourceAttribution(
+                            text="Flet",
+                            prepend_copyright=False,
+                            on_click=lambda e: page.launch_url("https://flet.dev"),
+                        )
+                    ],
+                ),
+                map.SimpleAttribution(
+                    text="Simple Attr.", alignment=ft.alignment.top_center
+                ),
+                    ],
+                ),
+            ),
+            ft.Row(
                     alignment=ft.MainAxisAlignment.CENTER,
+                    spacing=75,
                     controls=[
                         ft.Container(
                             content=ft.Text("Gráficos"),
                             padding=ft.padding.all(10),
                             alignment=ft.alignment.center,
                             bgcolor=ft.colors.WHITE,
-                            width=400,
+                            width=450,
                             height=200,
                             border_radius=10,
                             ink=True,
                             on_click=lambda e: abrir_graficosTP() # Abre o Dialog de Gráficos
                         ),
                         ft.Container(
-                            content=ft.Text("Aterros Ronald"),
+                            content=ft.Text("Gás"),
                             padding=ft.padding.all(10),
                             alignment=ft.alignment.center,
                             bgcolor=ft.colors.WHITE,
-                            width=400,
+                            width=450,
                             height=200,
                             border_radius=10,
                             ink=True,
-                            on_click=lambda e: abrir_GSgraficos()  # Abre o Dialog de Aterros Ronald
-                        )
+                            on_click=lambda e: abrir_GSgraficos() # Abre o Dialog de Gráficos
+                        ),
                     ]
-                )
-            ],
-
+                ),
         )
+    # Define o conteúdo da página inicial
+    def inicio():
+        return ft.Column(
+            create_map(),
+        )
+
     # Adiciona o conteúdo inicial à página
     page.scroll = True
     return inicio()  # Inicia com o conteúdo da página inicial
+
