@@ -1,6 +1,6 @@
 import flet as ft
 from login import login
-from register import register
+from register import Registro_User
 from menu import menu
 from cadastros import cadastros
 from configuracoes import configuracoes
@@ -119,7 +119,7 @@ def main(page: ft.Page):
         trocar_tela(login(page))
 
     def registar(e: ft.ControlEvent):
-        trocar_tela(register(page))
+        trocar_tela(Registro_User(page))
 
     # Exibe a tela inicial de login
     trocar_tela(login(page))
