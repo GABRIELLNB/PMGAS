@@ -1,5 +1,5 @@
 import pandas as pd
-import plotly.exceptions as px
+
 
 def Maps(tabela, grafico):
     tabela = pd.read_csv("weather_2000.csv")
