@@ -70,8 +70,8 @@ def configuracoes(page: ft.Page):
         return graficos(page)  # Página de gráficos
 
     def perfil_content():
-        from perfil import perfil
-        return perfil(page)  # Página de perfil
+        from perfil import perfil_us
+        return perfil_us(page)  # Página de perfil
     
     def menu_content():
         from menu import menu
