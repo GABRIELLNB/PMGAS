@@ -6,6 +6,16 @@ from validate_docbr import CNPJ
 #BAIXAR pip install validate_docbr
 caminho = 'Areas Cadastradas - PMGAS.xlsx'
 
+def buscar_Area(cnpj):
+    
+    df = pd.read_excel(caminho)
+    area = df[df['CNPJ']== df['CNPJ'].iloc[0]]
+    
+    if not area.empty:
+        return area.iloc[0].to_dict()
+    else:
+        return None
+
 def validar_cnpj(cnpj): #pip install cnpj-cpf-validator biblioteca de validação
     validaor = CNPJ()
     return validaor.validate(cnpj)

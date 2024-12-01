@@ -1,6 +1,7 @@
 import flet as ft
 import sys
 from pathlib import Path
+import pandas as pd
 
 # Caminho relativo para importar módulos
 file = Path(__file__).resolve()
@@ -10,16 +11,18 @@ sys.path.append(str(root))
 
 from edit_perfil import edit_perfil
 from edit_area import edit_area
+from areas_cadastradas import areas_cadastradas
+
+caminho = "Contas - PMGAS.xlsx"
 
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
-from areas_cadastradas import areas_cadastradas
+
 from modo_pro import mod_pro
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
-    
     return ft.NavigationBar(
         bgcolor=b,
         destinations=[
@@ -39,28 +42,22 @@ def escolher_opcao(e, update_content, configuracoes_content, cadastros_content, 
     if opcao == 0:
         update_content(menu_content())
     elif opcao == 1:
-        update_content(cadastros_content())  # Exibe a página de cadastros
+        update_content(cadastros_content())  
     elif opcao == 2:
-        update_content(graficos_content())  # Exibe a página de gráficos
+        update_content(graficos_content())  
     elif opcao == 3:
-        update_content(perfil_content())  # Exibe a página de perfil
+        update_content(perfil_content())  
     elif opcao == 4:
-        update_content(configuracoes_content())  # Exibe a página de configurações
-
+        update_content(configuracoes_content())  
 
 # Função de configuração
 def perfil(page: ft.Page):
-    
     page.title = "PMGAS - Perfil"
 
     def update_content(content):
         page.controls.clear()  # Limpa o conteúdo da página
         page.controls.append(content)  # Adiciona o novo conteúdo
         page.update()  # Atualiza a página
-
-    # Função para retornar a página de perfil
-    def perfil_content():
-        return perfil(page)
 
     # Funções de conteúdo para cada seção
     def configuracoes_content():
@@ -78,156 +75,130 @@ def perfil(page: ft.Page):
     def menu_content():
         from menu import menu
         return menu(page)
-    
-    def perfil(nome, email, senha):
+
+    # Função para exibir o conteúdo do perfil
+    def perfil_content(nome, email, cpf, senha):
         return ft.Container(
             content=ft.Column(
                 controls=[
-                    ft.Row(
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        spacing=142,
-                        controls=[
-                            ft.Text(value=f"Nome: {nome}", weight='bold', size=20, color=a2),
-                        ]
-                    ),
-                    ft.Row(
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        controls=[
-                            ft.Container(
-                                ft.Text(value=f"Email: {email}", size=16, color=a2),
-                            )
-                        ]
-                    ),
-                    ft.Row(
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        controls=[
-                            ft.Container(
-                                ft.Text(value=f"Senha: {senha}", size=16, color=a2)
-                            )
-                        ]
-                    ),
+                    ft.Text(value=f"Nome: {nome}", weight="bold", size=20, color=a2),
+                    ft.Text(value=f"Email: {email}", size=16, color=a2),
+                    ft.Text(value=f"CPF: {cpf}", size=16, color=a2),
+                    ft.Text(value=f"Senha: {'*' * len(senha)}", size=16, color=a2),
                 ],
             ),
         )
-    
 
     # Função principal para montar a página de perfil
     def perf():
         return ft.Column(
-            alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo principal verticalmente
+            alignment=ft.MainAxisAlignment.CENTER,  
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Container(height=5),
                 ft.Row(
-                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
-                controls=[
-                    ft.Image(
-                        src="image.png",  # Caminho local ou URL da imagem
-                        width=250,
-                        height=50,
-                        fit=ft.ImageFit.CONTAIN,  # Mantém proporção
-                    )
-                ]
-            ),
+                    alignment=ft.MainAxisAlignment.CENTER, 
+                    controls=[
+                        ft.Image(
+                            src="image.png", 
+                            width=250,
+                            height=50,
+                            fit=ft.ImageFit.CONTAIN,  
+                        )
+                    ]
+                ),
                 navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
                 ft.Container(
-                    alignment=ft.alignment.top_center,  # Alinha o container ao topo central
+                    alignment=ft.alignment.top_center,  
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     padding=ft.padding.all(10),
-                    width=950,  # Largura do container
+                    width=950, 
                     height=600,
                     content=ft.Column(
                         spacing=20,
-                        alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
+                        alignment=ft.MainAxisAlignment.CENTER,  
                         controls=[
                             ft.Row(
-                                alignment=ft.MainAxisAlignment.CENTER,  # Centraliza a imagem horizontalmente
+                                alignment=ft.MainAxisAlignment.CENTER,  
                                 controls=[
                                     ft.Text(
-                                            value='PERFIL',
-                                            weight='bold',
-                                            size=20,
-                                            color=a2
-
-                                        ),
-                                    ],
-                                ),
-
+                                        value='PERFIL',
+                                        weight='bold',
+                                        size=20,
+                                        color=a2
+                                    ),
+                                ],
+                            ),
                             ft.Row(
                                 alignment=ft.MainAxisAlignment.CENTER,
                                 spacing=180,
                                 controls=[
                                     ft.Container(
                                         bgcolor=a1,
-                                        border_radius=50,  # Borda arredondada para formar o círculo
-                                        width=150,  # Largura do círculo
-                                        height=150,  # Altura do círculo
-                                        on_click=lambda e: print("Círculo com ícone de nuvem clicado!"),
+                                        border_radius=50,  
+                                        width=150,  
+                                        height=150, 
                                         content=ft.Icon(
-                                            ft.icons.PERSON_OUTLINED,  # Ícone de notificação
-                                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                                color=b  # Cor do ícone
-                                        ),  
+                                            ft.icons.PERSON_OUTLINED,  
+                                            size=40,  
+                                            color=b  
+                                        ),
                                     ),
                                 ]
                             ),
-                            perfil(nome="151616", email="fdkfsgjkdfhjk", senha="dsgfhgdh"),
-                            # Container com a palavra 'Notificações'
-                            ft.Container(height=20),
+                            carregar_perfil(),  # Carrega o perfil
+                            # Botões de ação
                             ft.ElevatedButton(
                                 bgcolor=a2,
                                 content=ft.Container(
                                     padding=ft.padding.symmetric(horizontal=20, vertical=10),
                                     on_click=lambda e: update_content(edit_area(page)),
-                                content=ft.Row(
-                                    controls=[
-                                        ft.Icon(ft.icons.EDIT_DOCUMENT, color=ft.colors.WHITE),
-                                        ft.Text("Editar Área", color=ft.colors.WHITE, weight="bold"),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.START,
-                                    spacing=10,
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Icon(ft.icons.EDIT_DOCUMENT, color=ft.colors.WHITE),
+                                            ft.Text("Editar Área", color=ft.colors.WHITE, weight="bold"),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.START,
+                                        spacing=10,
+                                    ),
                                 ),
-                                bgcolor=a2,
                                 width=1000,
                                 height=40,
-                                ),
-                            ),
-                             ft.ElevatedButton(
-                                bgcolor=a2,
-                                content=ft.Container(
-                                    padding=ft.padding.symmetric(horizontal=20, vertical=10),
-                                    on_click=lambda e: update_content(edit_perfil(page)),
-                                content=ft.Row(
-                                    controls=[
-                                        ft.Icon(ft.icons.EDIT_SQUARE, color=ft.colors.WHITE),
-                                        ft.Text("Editar Perfil", color=ft.colors.WHITE, weight="bold"),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.START,
-                                    spacing=10,
-                                ),
-                                bgcolor=a2,
-                                width=1000,
-                                height=40,
-                                ),
                             ),
                             ft.ElevatedButton(
                                 bgcolor=a2,
                                 content=ft.Container(
                                     padding=ft.padding.symmetric(horizontal=20, vertical=10),
-                                    on_click= lambda e: update_content(areas_cadastradas(page)),
-                                content=ft.Row(
-                                    controls=[
-                                        ft.Icon(ft.icons.AREA_CHART, color=ft.colors.WHITE),
-                                        ft.Text("Áreas Cadastradas", color=ft.colors.WHITE, weight="bold"),
-                                    ],
-                                    alignment=ft.MainAxisAlignment.START,
-                                    spacing=10,
+                                    on_click=lambda e: update_content(edit_perfil(page)),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Icon(ft.icons.EDIT_SQUARE, color=ft.colors.WHITE),
+                                            ft.Text("Editar Perfil", color=ft.colors.WHITE, weight="bold"),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.START,
+                                        spacing=10,
+                                    ),
                                 ),
-                                bgcolor=a2,
                                 width=1000,
                                 height=40,
+                            ),
+                            ft.ElevatedButton(
+                                bgcolor=a2,
+                                content=ft.Container(
+                                    padding=ft.padding.symmetric(horizontal=20, vertical=10),
+                                    on_click=lambda e: update_content(areas_cadastradas(page)),
+                                    content=ft.Row(
+                                        controls=[
+                                            ft.Icon(ft.icons.AREA_CHART, color=ft.colors.WHITE),
+                                            ft.Text("Áreas Cadastradas", color=ft.colors.WHITE, weight="bold"),
+                                        ],
+                                        alignment=ft.MainAxisAlignment.START,
+                                        spacing=10,
+                                    ),
                                 ),
+                                width=1000,
+                                height=40,
                             ),
                             ft.Container(height=70),
                         ],
@@ -235,4 +206,19 @@ def perfil(page: ft.Page):
                 ),
             ],
         )
+
+    # Função para carregar o perfil
+    def carregar_perfil():
+        from models.Bregister import buscar_perfil
+        df = pd.read_excel(caminho)
+        cpf_usuario = df['CPF'].iloc[0]  # Pega o primeiro CPF (ajustar conforme sua lógica)
+        perfil = buscar_perfil(cpf_usuario)
+    
+        if perfil:
+            return perfil_content(perfil["Nome"], perfil["Email"], perfil["CPF"], perfil["Senha"])
+        else:
+            return ft.Text("Perfil não encontrado!", size=20, color="red")
+
+    # Atualiza o conteúdo com o perfil carregado
+    update_content(carregar_perfil())
     return perf()

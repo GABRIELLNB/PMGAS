@@ -3,8 +3,21 @@ import flet as ft
 import re  # Importa o módulo de expressões regulares
 from validate_docbr import CPF
 
+
+
 # Caminho para o arquivo Excel
 caminho = "Contas - PMGAS.xlsx"
+
+def buscar_perfil(cpf):
+   
+    df = pd.read_excel(caminho)
+    perfil = df[df['CPF'] == df['CPF'].iloc[0]]  # Filtra o DataFrame para o CPF fornecido
+    
+    if not perfil.empty:
+        return perfil.iloc[0].to_dict()  # Retorna o perfil como um dicionário
+    else:
+        return None
+
 
 def validar_senha(senha):
     # Expressão regular para verificar se a senha contém pelo menos uma letra e um número
@@ -23,7 +36,7 @@ def validar_email(email):
     return bool(re.match(email_regex, email))  # Retorna True se o email for válido, False caso contrário
 
 def salvar_dados(email, nome, cpf, senha, update_error_message):
-    # Verifica se o arquivo já existe
+   
     try:
         dados = pd.read_excel(caminho)
     except FileNotFoundError:
@@ -64,12 +77,12 @@ def salvar_dados(email, nome, cpf, senha, update_error_message):
 
     # Criação de novo registro
     novos_dados = {
-        "Email": email,
-        "Nome": nome,
-        "CPF": cpf,
-        "Senha": senha
+    "Email": email,
+    "Nome": nome,
+    "CPF": cpf,
+    "Senha": senha
     }
-
+    
     novos_dados_df = pd.DataFrame([novos_dados])  # Converte o dicionário para DataFrame
     dados = pd.concat([dados, novos_dados_df], ignore_index=True)  # Adiciona ao DataFrame existente
 

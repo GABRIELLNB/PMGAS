@@ -34,5 +34,5 @@ def check_email(email):  # Verifica se o email existe
 def check_senha(email, senha):  # Verifica se a senha corresponde ao email informado
     if email in USER_CREDENTIALS:
         if USER_CREDENTIALS[email] == senha:
-            return USER_NAMES[email]  # Retorna o nome associado ao email
+            return USER_NAMES[email]  # Retorna o nome associado ao emails
     return None

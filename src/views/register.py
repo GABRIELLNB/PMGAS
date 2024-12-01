@@ -20,16 +20,16 @@ def Registro_User (page: ft.Page):
     page.title = "PMGAS - Cadastro"
     
     
-    def update_content(content):
-        page.controls.clear()  # Limpa o conteúdo da página
-        page.controls.append(content)  # Adiciona o novo conteúdo
-        page.update()  # Atualiza a página
-        
     email_input = ""
     nome_input = ""
     cpf_input = ""
     senha_input = ""
     
+    def update_content(content):
+        page.controls.clear()  # Limpa o conteúdo da página
+        page.controls.append(content)  # Adiciona o novo conteúdo
+        page.update()  # Atualiza a página
+
     def on_email_change(e):
         nonlocal email_input
         email_input = e.control.value
@@ -167,7 +167,7 @@ def Registro_User (page: ft.Page):
                             bgcolor=a2,
                             width=500,
                             height=40,
-                            on_click=lambda e: salvar_dados(
+                            on_click=lambda e: salvar_dados( #verifica e salva os dados do Usuario
                                 email_input, nome_input, cpf_input, senha_input, update_error_message
                             ) 
                         ),
