@@ -109,7 +109,7 @@ def edit_area(page: ft.Page):
                                         ft.Container(width=500),
                                         ft.Icon(ft.icons.EDIT_DOCUMENT, size=24, color=a2),
                                         ft.Text(
-                                            value="Editar Áreas",
+                                            value="Editar Área",
                                             weight="bold",
                                             size=20,
                                             color=ft.colors.BLACK,
