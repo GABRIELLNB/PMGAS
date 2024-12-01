@@ -67,8 +67,8 @@ def menu(page: ft.Page):
         return graficos(page)
 
     def perfil_content():
-        from perfil import perfil
-        return perfil(page)
+        from perfil import perfil_us
+        return perfil_us(page)
     
     # Função para abrir a página flutuante de gráficos
     def abrir_graficosTP():
