@@ -158,5 +158,5 @@ def login_adm(page: ft.Page):
         spacing=10,
         horizontal_alignment=ft.CrossAxisAlignment.CENTER
     )
-
+    page.scroll = True
     return log
