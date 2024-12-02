@@ -93,3 +93,7 @@ def salvar_dados(email, nome, cpf, senha, update_error_message):
     # Exibe mensagem de sucesso
     update_error_message("Cadastro realizado com sucesso!\n          Reinicie a aplicação")
 
+
+
+
+
