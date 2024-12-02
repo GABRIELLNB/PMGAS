@@ -105,4 +105,5 @@ def mod_pro(page: ft.Page):
                 )
             ]
         )
+    page.scroll = True
     return pro()
