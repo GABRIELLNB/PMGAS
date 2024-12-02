@@ -257,5 +257,6 @@ def areas_cadastradas(page: ft.Page):
     # Carregar os dados e renderizar a página
     area_dados = carregar_areas_dados()
     update_content(area_page(**area_dados))
-
+    
+    page.scroll = True
     return area_page()
