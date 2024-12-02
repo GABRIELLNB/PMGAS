@@ -92,7 +92,6 @@ def cadastros(page: ft.Page):
         error_message.color = ft.colors.RED
         page.update()
         
-        
     
 
     # Função para retornar a página de perfil
@@ -172,6 +171,7 @@ def cadastros(page: ft.Page):
                                 width=1000,
                                 height=200,
                                 content=ft.Column(
+                                    alignment=ft.MainAxisAlignment.CENTER,
                                     controls=[
                                         nome_input := ft.TextField(
                                             hint_text='Nome do Proprietário',
