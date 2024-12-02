@@ -75,7 +75,7 @@ def menu_adm(page: ft.Page):
                     width=1000,
                     height=330,
                     padding=ft.padding.all(10),
-                    on_click=lambda e:update_content(menu_outra_ADM(page)),
+                    on_click=lambda e:update_content(menu_outra_ADM(page)),#DEPOIS TIRAR
                     content=ft.Column(
                         controls=[
                             # Dados da área
