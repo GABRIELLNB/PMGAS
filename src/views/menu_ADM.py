@@ -219,7 +219,7 @@ def menu_adm(page: ft.Page):
                 navigation_bar(update_content, configuracoes_content, cadastros_content, perfil_content),
                 ft.Container(height=10),
                 ft.Row(
-                    alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
+                    alignment=ft.MainAxisAlignment.CENTER,  # Alinha os itens à direita
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
                     controls=[
                         # SearchBar
@@ -246,21 +246,6 @@ def menu_adm(page: ft.Page):
                             ),
                             width=1000,  # Ajusta a largura do SearchBar
                         ),
-                        ft.Container(width=125),
-                        # Botão com ícone
-                        ft.Container(
-                            alignment=ft.alignment.center,
-                            bgcolor=a2,
-                            width=40,  # Largura do círculo
-                            height=40,  # Altura do círculo
-                            content=ft.Icon(
-                                ft.icons.EDIT_DOCUMENT,  # Ícone de notificação
-                                size=40,  # Tamanho do ícone ajustado para maior visibilidade
-                                color=b  # Cor do ícone
-                            ),
-                        ),
-                        
-                        ft.Container(width=75),
                         
                     ],
                 ),
