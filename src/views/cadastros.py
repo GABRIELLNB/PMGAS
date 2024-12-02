@@ -97,8 +97,8 @@ def cadastros(page: ft.Page):
 
     # Função para retornar a página de perfil
     def perfil_content():
-        from perfil import perfil_us
-        return perfil_us(page)
+        from perfil import perfil
+        return perfil(page)
 
     # Funções de conteúdo para cada seção
     def configuracoes_content():
