@@ -237,4 +237,5 @@ def configuracoes(page: ft.Page):
                 ),
             ]
         )
+    page.scroll = True
     return confg()
