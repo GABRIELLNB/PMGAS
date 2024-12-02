@@ -138,130 +138,119 @@ def edit_perfil_adm(page: ft.Page):
                                 padding=ft.padding.all(20),  # Espaçamento interno
                                 border_radius=20,  # Bordas arredondadas
                                 content=ft.Column(
-                                     alignment=ft.MainAxisAlignment.CENTER,
-                                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                     controls=[
-                                    # Espaçamento superior
-                                    ft.Container(height=20),
-                                    
-                                    ft.Row(
-                                                    
-                                                    controls=[  
-                                                        ft.Container(width=15),
-                                                        ft.Container(
-                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
-                                                            content=ft.Text(
-                                                                value="Nome",
-                                                                weight="bold",
-                                                                size=15,
-                                                                color=b,
-                                                            ),
+                                        ft.Container(height=20),  
+                                            ft.Row(
+                                                controls=[  
+                                                    ft.Container(width=15),
+                                                    ft.Container(
+                                                        alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                        content=ft.Text(
+                                                            value="Nome",
+                                                            weight="bold",
+                                                            size=15,
+                                                            color=b,
                                                         ),
-                                                    ]
+                                                    ),
+                                                ]
+                                            ),
+                                            ft.Row(
+                                                alignment=ft.MainAxisAlignment.CENTER,
+                                                controls=[
+                                                    ft.Container(
+                                                        bgcolor=b,
+                                                        width=560,
+                                                        padding=ft.padding.symmetric(horizontal=20, vertical=0),
+                                                        border_radius=15,
+                                                        content=ft.Column(
+                                                            controls=[nome_input]),
+                                                    ),
+                                                ],
+                                            ),
+                                            ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                            ),                       
+                                            ft.Row(
+                                                controls=[  
+                                                    ft.Container(width=15),
+                                                    ft.Container(
+                                                        alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                        content=ft.Text(
+                                                            value="Email",
+                                                            weight="bold",
+                                                            size=15,
+                                                            color=b,
+                                                        ),
+                                                    ),
+                                                ]
+                                            ),                                       
+                                            ft.Row(
+                                                alignment=ft.MainAxisAlignment.CENTER,
+                                                controls=[
+                                                    ft.Container(
+                                                        bgcolor=b,
+                                                        width=560,
+                                                        padding=ft.padding.symmetric(horizontal=20, vertical=0),
+                                                        border_radius=15,
+                                                        content=ft.Column(controls=[email_input]),
+                                                    ),
+                                                ],
+                                            ),
+                                            ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                            ),
+                                            ft.Row(                                                   
+                                                controls=[  
+                                                    ft.Container(width=15),
+                                                    ft.Container(
+                                                        alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                        content=ft.Text(
+                                                            value="Senha",
+                                                            weight="bold",
+                                                            size=15,
+                                                            color=b,
+                                                        ),
+                                                    ),
+                                                ]
+                                            ),
+                                            ft.Row(
+                                                alignment=ft.MainAxisAlignment.CENTER,
+                                                controls=[
+                                                    ft.Container(
+                                                        bgcolor=b,
+                                                        width=560,
+                                                        padding=ft.padding.symmetric(horizontal=20, vertical=0),
+                                                        border_radius=15,
+                                                        content=ft.Column(controls=[senha_input]),
+                                                    ),
+                                                ],
+                                            ),
+                                            ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                            ),
+                                            ft.Container(height=20),
+                                            error_message,
+                                            ft.ElevatedButton(
+                                                text="Salvar",
+                                                bgcolor=b,
+                                                color=a2,
+                                                width=400,
+                                                height=40,
+                                                on_click=on_salvar_click,
+                                            ),
+                                            ],
+                                        ),
                                     ),
-                                    ft.Row(
-                                                    alignment=ft.MainAxisAlignment.CENTER,
-                                                    controls=[
-                                                        
-                                                        ft.Container(
-                                                            bgcolor=b,
-                                                            width=560,
-                                                            padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                                            border_radius=15,
-                                                            content=ft.Column(
-                                                                controls=[nome_input]),
-                                                        ),
-                                                    ],
-                                                ),
-                                    
-                                    ft.Divider(
-                            height=1,
-                            color=ft.colors.with_opacity(0.25, ft.colors.GREY),
-                            thickness=1
-                        ),
-                                                
-                                                                                    ft.Row(
-                                                    
-                                                    controls=[  
-                                                        ft.Container(width=15),
-                                                        ft.Container(
-                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
-                                                            content=ft.Text(
-                                                                value="Email",
-                                                                weight="bold",
-                                                                size=15,
-                                                                color=b,
-                                                            ),
-                                                        ),
-                                                    ]
-                                    ),
-                                                                                    
-                                                ft.Row(
-                                                    alignment=ft.MainAxisAlignment.CENTER,
-                                                    controls=[
-                                                        ft.Container(
-                                                            bgcolor=b,
-                                                            width=560,
-                                                            padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                                            border_radius=15,
-                                                            content=ft.Column(controls=[email_input]),
-                                                        ),
-                                                    ],
-                                                ),
-                                                ft.Divider(
-                            height=1,
-                            color=ft.colors.with_opacity(0.25, ft.colors.GREY),
-                            thickness=1
-                        ),
-                                              
-                                                                                    ft.Row(
-                                                    
-                                                    controls=[  
-                                                        ft.Container(width=15),
-                                                        ft.Container(
-                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
-                                                            content=ft.Text(
-                                                                value="Senha",
-                                                                weight="bold",
-                                                                size=15,
-                                                                color=b,
-                                                            ),
-                                                        ),
-                                                    ]
-                                    ),
-                                                ft.Row(
-                                                    alignment=ft.MainAxisAlignment.CENTER,
-                                                    controls=[
-                                                        ft.Container(
-                                                            bgcolor=b,
-                                                            width=560,
-                                                            padding=ft.padding.symmetric(horizontal=20, vertical=0),
-                                                            border_radius=15,
-                                                            content=ft.Column(controls=[senha_input]),
-                                                        ),
-                                                    ],
-                                                ),
-                                                ft.Divider(
-                            height=1,
-                            color=ft.colors.with_opacity(0.25, ft.colors.GREY),
-                            thickness=1
-                        ),
-                                                ft.Container(height=20),
-                                                error_message,
-                                                ft.ElevatedButton(
-                                                    text="Salvar",
-                                                    bgcolor=b,
-                                                    color=a2,
-                                                    width=400,
-                                                    height=40,
-                                                    on_click=on_salvar_click,
-                                                ),
                                 ],
-                            ),
-                            ),
-                        ],
-                    ),
-                            
+                            ),    
                         ],
                     ),
                 ),
