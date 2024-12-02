@@ -272,5 +272,5 @@ def edit_perfil(page: ft.Page):
             ]
         )
 
-    page.scroll = False
+    page.scroll = True
     return perf()
