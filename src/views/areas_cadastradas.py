@@ -75,7 +75,7 @@ def areas_cadastradas(page: ft.Page):
         bgcolor=ft.colors.WHITE,
         border_radius=10,
         width=1000,
-        height=400,
+        height=350,
         padding=ft.padding.all(10),
         content=ft.Column(
             controls=[
@@ -228,7 +228,7 @@ def areas_cadastradas(page: ft.Page):
                                         ),
                                     ),
                                     ft.Container(width=500),
-                                    ft.Icon(ft.icons.EDIT_SQUARE, size=24, color=b),
+
                                     ft.Text(
                                         value="Áreas Cadastradas",
                                         weight="bold",
@@ -243,38 +243,7 @@ def areas_cadastradas(page: ft.Page):
                         ],
                     ),
                 ),
-                ft.Row(
-                    alignment=ft.MainAxisAlignment.END,  # Alinha os itens à direita
-                    vertical_alignment=ft.CrossAxisAlignment.CENTER,  # Alinha verticalmente ao centro
-                    controls=[
-                        # SearchBar
-                        ft.Container(height=15),
-                        ft.Container(
-                            bgcolor=ft.colors.WHITE,
-                            padding=ft.padding.symmetric(horizontal=10, vertical=5),
-                            border_radius=15,
-                            content=ft.Row(
-                                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                                controls=[
-                                    ft.Icon(ft.icons.SEARCH, color=ft.colors.GREY),
-                                    ft.TextField(
-                                        hint_text="Buscar...",
-                                        border=ft.InputBorder.NONE,
-                                        cursor_color=ft.colors.BLACK,
-                                        text_style=ft.TextStyle(
-                                            size=16, color=ft.colors.BLACK
-                                        ),
-                                        expand=True,
-                                    ),
-                                    ft.Icon(ft.icons.CLOSE, color=ft.colors.GREY),
-                                ],
-                            ),
-                            width=1000,  # Ajusta a largura do SearchBar
-                        ),
-                        ft.Container(width=260),
-                    ],
-                ),
+                
                 ft.Divider(
                     height=1,
                     color=ft.colors.with_opacity(0.25, ft.colors.GREY),
