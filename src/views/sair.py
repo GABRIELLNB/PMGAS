@@ -38,7 +38,7 @@ def sair_da_conta(page: ft.Page):
                     ft.Text(
                         "Tem certeza de que deseja se desconectar?",
                         size=16,
-                        color=b,
+                        color=a2,
                         text_align=ft.TextAlign.CENTER,
                     ),
                     ft.Divider(
