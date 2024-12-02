@@ -159,8 +159,107 @@ def menu(page: ft.Page):
         print(e)
     
     def create_map():
-        page.add(
-            ft.Column(
+        # Container para o mapa
+        map_container = ft.Container(
+            ft.Row(
+                alignment=ft.MainAxisAlignment.CENTER,
+                spacing=75,
+                controls=[
+                    ft.Container(
+                        height=380,  
+                        width=1000,
+                        border_radius=15,
+                        content=map.Map(
+                            configuration=map.MapConfiguration(
+                                on_init=lambda e: print("Map Init"),
+                                on_tap=handle_tap,
+                                on_long_press=handle_tap,
+                            ),
+                            layers=[
+                                map.TileLayer(
+                                    url_template="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                    on_image_error=lambda e: print("Image Error"),
+                                ),
+                                map.CircleLayer(
+                                    circles=[
+                                        map.CircleMarker(
+                                            radius=20,
+                                            coordinates=map.MapLatitudeLongitude(-12.9714, -38.5014),
+                                            color=ft.colors.BLUE,
+                                            border_color=ft.colors.random_color(),
+                                            border_stroke_width=5,
+                                        )
+                                    ]
+                                ),
+                                map.MarkerLayer(
+                                    markers=[
+                                        map.Marker(
+                                            content=ft.Icon(
+                                                ft.icons.random_icon(),
+                                                color=ft.colors.random_color(),
+                                                size=30,
+                                            ),
+                                            coordinates=map.MapLatitudeLongitude(35, 35),
+                                        )
+                                    ]
+                                ),
+                                map.RichAttribution(
+                                    alignment=ft.alignment.top_center,
+                                    attributions=[
+                                        map.TextSourceAttribution(
+                                            text="Flet",
+                                            prepend_copyright=False,
+                                            on_click=lambda e: page.launch_url("https://flet.dev"),
+                                        )
+                                    ],
+                                ),
+                                map.SimpleAttribution(
+                                    text="Simple Attr.", alignment=ft.alignment.top_center
+                                ),
+                            ],
+                        ),
+                     )
+                ]
+            ),
+        )
+
+        # Conteúdo do menu com a navegação
+        navigation_controls = navigation_bar(
+            update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content
+        )
+
+        # Row com containers para "Gráficos" e "Gás"
+        action_buttons = ft.Row(
+            alignment=ft.MainAxisAlignment.CENTER,
+            spacing=75,
+            controls=[
+                ft.Container(
+                    content=ft.Text("Gráficos"),
+                    padding=ft.padding.all(10),
+                    alignment=ft.alignment.center,
+                    bgcolor=ft.colors.WHITE,
+                    width=450,
+                    height=200,
+                    border_radius=10,
+                    ink=True,
+                    on_click=lambda e: abrir_graficosTP()
+                ),
+                ft.Container(
+                    content=ft.Text("Gás"),
+                    padding=ft.padding.all(10),
+                    alignment=ft.alignment.center,
+                    bgcolor=ft.colors.WHITE,
+                    width=450,
+                    height=200,
+                    border_radius=10,
+                    ink=True,
+                    on_click=lambda e: abrir_GSgraficos()
+                ),
+            ]
+        )
+
+        # Retorna a estrutura do conteúdo principal
+        return ft.Column(
             controls=[
                 ft.Container(height=5),
                 ft.Row(
@@ -174,102 +273,17 @@ def menu(page: ft.Page):
                         )
                     ]
                 ),
-                navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content),
-                ft.Container(height=20),
-            ],
-            ),
-            
-            ft.Container(
-                height=380,  # Adjust the height as needed
-                width=1000,   # Adjust the width as needed
-                border_radius=15,
-                content=map.Map(
-            configuration=map.MapConfiguration(
-                on_init=lambda e: print("Map Init"),
-                on_tap=handle_tap,
-                on_long_press=handle_tap,
-            ),
-            layers=[
-                map.TileLayer(
-                    url_template="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    on_image_error=lambda e: print("Image Error"),
-                ),
-                map.CircleLayer(
-                    circles=[
-                        map.CircleMarker(
-                            radius=20,
-                            coordinates=map.MapLatitudeLongitude(-12.9714, -38.5014),
-                            color=ft.colors.BLUE,
-                            border_color=ft.colors.random_color(),
-                            border_stroke_width=5,
-                        )
-                    ]
-                ),
+                
+                navigation_controls,
+                ft.Container(height=5),
+                map_container,
+                action_buttons,
+            ]
+        )
 
-                map.MarkerLayer(
-                    markers=[
-                        map.Marker(
-                            content=ft.Icon(
-                                ft.icons.random_icon(),
-                                color=ft.colors.random_color(),
-                                size=30,
-                            ),
-                            coordinates=map.MapLatitudeLongitude(35, 35),
-                        )
-                    ]
-                ),
-                map.RichAttribution(
-                    alignment=ft.alignment.top_center,
-                    attributions=[
-                        map.TextSourceAttribution(
-                            text="Flet",
-                            prepend_copyright=False,
-                            on_click=lambda e: page.launch_url("https://flet.dev"),
-                        )
-                    ],
-                ),
-                map.SimpleAttribution(
-                    text="Simple Attr.", alignment=ft.alignment.top_center
-                ),
-                    ],
-                ),
-            ),
-            ft.Row(
-                    alignment=ft.MainAxisAlignment.CENTER,
-                    spacing=75,
-                    controls=[
-                        ft.Container(
-                            content=ft.Text("Gráficos"),
-                            padding=ft.padding.all(10),
-                            alignment=ft.alignment.center,
-                            bgcolor=ft.colors.WHITE,
-                            width=450,
-                            height=200,
-                            border_radius=10,
-                            ink=True,
-                            on_click=lambda e: abrir_graficosTP() # Abre o Dialog de Gráficos
-                        ),
-                        ft.Container(
-                            content=ft.Text("Gás"),
-                            padding=ft.padding.all(10),
-                            alignment=ft.alignment.center,
-                            bgcolor=ft.colors.WHITE,
-                            width=450,
-                            height=200,
-                            border_radius=10,
-                            ink=True,
-                            on_click=lambda e: abrir_GSgraficos() # Abre o Dialog de Gráficos
-                        ),
-                    ]
-                ),
-        )
-    # Define o conteúdo da página inicial
     def inicio():
-        return ft.Column(
-            create_map(),
-        )
+        return create_map()
 
     # Adiciona o conteúdo inicial à página
     page.scroll = True
-    return inicio()  # Inicia com o conteúdo da página inicial
-
+    return inicio()
