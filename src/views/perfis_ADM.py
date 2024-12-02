@@ -242,5 +242,5 @@ def perfil_adm(page: ft.Page):
             ],
         )
     
-
+    page.scroll = True
     return perf()
