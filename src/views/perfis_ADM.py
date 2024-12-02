@@ -257,4 +257,4 @@ def perfil_adm(page: ft.Page):
         )
     
 
-    update_content(perf())
+    return perf()
