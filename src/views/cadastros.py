@@ -138,7 +138,7 @@ def cadastros(page: ft.Page):
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
                     width=1000,
-                    height=625,  # Aumentei a altura para acomodar mais campos
+                    height=640,  # Aumentei a altura para acomodar mais campos
                     padding=ft.padding.all(10),
                     content=ft.Column(
                         controls=[
@@ -330,5 +330,5 @@ def cadastros(page: ft.Page):
                 ),
             ],
         )
-        
+    page.scroll = True
     return cad()
