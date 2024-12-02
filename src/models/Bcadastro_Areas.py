@@ -7,14 +7,18 @@ from validate_docbr import CNPJ
 caminho = 'Areas Cadastradas - PMGAS.xlsx'
 
 def buscar_Area(cnpj):
-    
     df = pd.read_excel(caminho)
-    area = df[df['CNPJ']== df['CNPJ'].iloc[0]]
+    
+    # Busca a área pelo CNPJ fornecido
+    area = df[df['CNPJ'] == cnpj]
     
     if not area.empty:
+        # Retorna a primeira linha da área encontrada como um dicionário
         return area.iloc[0].to_dict()
     else:
+        # Retorna None caso não encontre a área
         return None
+
 
 def validar_cnpj(cnpj): #pip install cnpj-cpf-validator biblioteca de validação
     validaor = CNPJ()
@@ -52,11 +56,11 @@ def salvar_dados_Areas(Nome_Proprietario, cnpj, cep, nome_empr, nature, porte, u
        update_error_message_Areas("Nome da empresa já registrados!")
         
     if not validar_cnpj(cnpj):
-        update_error_message_Areas("O cnpj está incorreto.")
+        update_error_message_Areas("O CNPJ está incorreto.")
         return 
     
     if not validar_cep(cep):     
-        update_error_message_Areas("O cep está incorreto.")
+        update_error_message_Areas("O CEP está incorreto.")
         return
     
     # Criação de novo registro
@@ -74,4 +78,4 @@ def salvar_dados_Areas(Nome_Proprietario, cnpj, cep, nome_empr, nature, porte, u
     
     dados.to_excel(caminho, index=False)
     
-    update_error_message_Areas("Cadastro de Area realizado com sucesso! \n          Reinicie a aplicação ")
+    update_error_message_Areas("Cadastro de Area realizado com sucesso!", ft.colors.GREEN)
