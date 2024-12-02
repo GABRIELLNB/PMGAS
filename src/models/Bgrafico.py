@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def grs_ano():
         # Carregar os dados
-        dados = pd.read_excel("4cn_uf_residuos.xlsx")
+        dados = pd.read_excel("4cn_uf_residuos.xlsx", sheet_name="CH4")
 
         # Mostrar as primeiras 5 linhas para entender a estrutura
         print("Primeiras 5 linhas do DataFrame 'dados':")
@@ -75,8 +75,8 @@ def grs_ano():
         plt.figure(figsize=(10, 6))
         plt.bar(bahia_anos.index, bahia_anos.values.flatten(), color=cor)
         plt.xlabel('Ano')
-        plt.ylabel('Valores de CO₂e (Gg)')
-        plt.title('Valores de CO₂e (GWP SAR) para a Bahia por Ano')
+        plt.ylabel('Valores de CH₄ (Gg)')
+        plt.title('Valores de CH₄ para a Bahia por Ano')
 
         # Mostrar o gráfico
         plt.xticks(rotation=45)  # Melhor visualização dos anos
@@ -88,11 +88,11 @@ def grs_ano():
         # Mostrar o gráfico
         plt.show()
 
-
+grs_ano()
 
 def grs_linha():
     # Carregar os dados
-    dados = pd.read_excel("4cn_uf_residuos.xlsx")
+    dados = pd.read_excel("4cn_uf_residuos.xlsx", "4cn_uf_residuos.xlsx", sheet_name="CH4")
 
     # Mostrar as primeiras 5 linhas para entender a estrutura
     print("Primeiras 5 linhas do DataFrame 'dados':")
