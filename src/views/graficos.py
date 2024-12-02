@@ -110,7 +110,7 @@ def graficos(page: ft.Page):
                         controls=[
                             ft.Container(
                             alignment=ft.alignment.top_left,  # Alinha o texto no canto superior esquerdo
-                            content=ft.Text(value='Gráficos - 2024', weight='bold', size=20, color=a2)
+                            content=ft.Text(value='Gráficos - Gás Metano (CH₄)', weight='bold', size=18, color=a2)
                         ),
                             ft.Divider(
                                 height=1,
