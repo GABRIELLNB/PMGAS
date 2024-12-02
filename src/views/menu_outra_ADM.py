@@ -246,5 +246,6 @@ def menu_outra_ADM(page: ft.Page):
                 ),
             ],
         )
-
+        
+    page.scroll = True
     return inc()
