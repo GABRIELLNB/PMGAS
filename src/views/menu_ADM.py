@@ -258,5 +258,6 @@ def menu_adm(page: ft.Page):
                 *[cad_content(p["Nome Proprietario"], p["CNPJ"], p["CEP"], p["Nome da empresa"], p["Natureza Juridica"], p["Porte"]) for p in cadast],  # Exibe todos os perfis
             ],
         )
-
+        
+    page.scroll = True
     return inicio()
