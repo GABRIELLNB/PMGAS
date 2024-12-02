@@ -11,17 +11,20 @@ sys.path.append(str(root))
 
 from edit_area import edit_area
 
-caminho = "Areas Cadastradas - PMGAS.xlsx"
 
+    
 a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
-
+from models.areas import ler_perfis_excel
 # Função de configuração
 def areas_cadastradas(page: ft.Page):
     from perfil import perfil_us
     page.title = "PMGAS - Perfis"
+    
+    caminho = "Areas Cadastradas - PMGAS.xlsx"
+    area = ler_perfis_excel(caminho)
     
     def update_content(content):
         if isinstance(content, ft.Control):
@@ -278,7 +281,7 @@ def areas_cadastradas(page: ft.Page):
                     thickness=1,
                 ),
                 ft.Container(height=10),
-                area_layout(nome, natureza, porte, cnpj, cep, nome_empresa),
+                *[area_layout(p["Nome Proprietario"], p["CNPJ"], p["CEP"], p["Nome da empresa"], p["Natureza Juridica"], p["Porte"]) for p in area],  # Exibe todos os perfis
             ]
         )
 
