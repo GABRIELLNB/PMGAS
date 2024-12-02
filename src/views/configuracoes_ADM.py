@@ -218,5 +218,6 @@ def configuracoes_adm(page: ft.Page):
     
     # Atualiza o conteúdo da página com as informações do perfil
     update_content(perfil_info)
+    page.scroll = True
     return confg()
 
