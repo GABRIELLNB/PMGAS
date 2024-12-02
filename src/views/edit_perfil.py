@@ -123,13 +123,28 @@ def edit_perfil(page: ft.Page):
                                     ft.Container(
                                         bgcolor=a2,
                                         width=650,
-                                        height=450,
+                                        height=550,
                                         padding=ft.padding.all(20),
                                         border_radius=20,
                                         content=ft.Column(
                                                 alignment=ft.MainAxisAlignment.CENTER,
                                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                             controls=[
+                                                ft.Container(height=20),  
+                                                ft.Row(
+                                                    controls=[  
+                                                        ft.Container(width=20),
+                                                        ft.Container(
+                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                            content=ft.Text(
+                                                                value="Nome",
+                                                                weight="bold",
+                                                                size=15,
+                                                                color=b,
+                                                            ),
+                                                        ),
+                                                    ]
+                                                ),
                                                 ft.Row(
                                                     alignment=ft.MainAxisAlignment.CENTER,
                                                     controls=[
@@ -143,7 +158,25 @@ def edit_perfil(page: ft.Page):
                                                         ),
                                                     ],
                                                 ),
-                                                ft.Container(height=10),
+                                                ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                                ),
+                                                ft.Row(
+                                                    controls=[  
+                                                        ft.Container(width=20),
+                                                        ft.Container(
+                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                            content=ft.Text(
+                                                                value="Email",
+                                                                weight="bold",
+                                                                size=15,
+                                                                color=b,
+                                                            ),
+                                                        ),
+                                                    ]
+                                                ),  
                                                 ft.Row(
                                                     alignment=ft.MainAxisAlignment.CENTER,
                                                     controls=[
@@ -156,7 +189,25 @@ def edit_perfil(page: ft.Page):
                                                         ),
                                                     ],
                                                 ),
-                                                ft.Container(height=10),
+                                                ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                                ),
+                                                ft.Row(                                                   
+                                                    controls=[  
+                                                        ft.Container(width=20),
+                                                        ft.Container(
+                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                            content=ft.Text(
+                                                                value="Senha",
+                                                                weight="bold",
+                                                                size=15,
+                                                                color=b,
+                                                            ),
+                                                        ),
+                                                    ]
+                                                ),
                                                 ft.Row(
                                                     alignment=ft.MainAxisAlignment.CENTER,
                                                     controls=[
@@ -169,7 +220,25 @@ def edit_perfil(page: ft.Page):
                                                         ),
                                                     ],
                                                 ),
-                                                ft.Container(height=10),
+                                                ft.Divider(
+                                                height=1,
+                                                color=ft.colors.with_opacity(0.25, ft.colors.GREY),
+                                                thickness=1
+                                                ),
+                                                ft.Row(                                                   
+                                                    controls=[  
+                                                        ft.Container(width=20),
+                                                        ft.Container(
+                                                            alignment=ft.alignment.top_left,  # Alinha no canto superior esquerdo
+                                                            content=ft.Text(
+                                                                value="CPF",
+                                                                weight="bold",
+                                                                size=15,
+                                                                color=b,
+                                                            ),
+                                                        ),
+                                                    ]
+                                                ),
                                                 ft.Row(
                                                     alignment=ft.MainAxisAlignment.CENTER,
                                                     controls=[
@@ -182,7 +251,7 @@ def edit_perfil(page: ft.Page):
                                                         ),
                                                     ],
                                                 ),
-                                                ft.Container(height=20),
+                                                ft.Container(height=10),
                                                 error_message,
                                                 ft.ElevatedButton(
                                                     text="Salvar",
