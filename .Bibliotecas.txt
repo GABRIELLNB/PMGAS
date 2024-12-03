@@ -1,0 +1,5 @@
+pip install pandas
+pip install flet
+pip install matplotlib
+pip install validate-docbr
+pip install openpyxl
