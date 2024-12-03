@@ -18,7 +18,7 @@ def ajuda(page: ft.Page):
     
     from configuracoes import configuracoes
     ajuda_dialog = ft.AlertDialog(
-        title=ft.Text("Sobre o Projeto", weight="bold", size=20, text_align=ft.TextAlign.CENTER,),
+        title=ft.Text("Ajuda", weight="bold", size=20, text_align=ft.TextAlign.CENTER,),
         content= ft.Container(
             width=500,
             height=200,
