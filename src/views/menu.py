@@ -84,7 +84,7 @@ def menu(page: ft.Page):
                         ),
                     ),
                     ft.Text(
-                        "Informações sobre Gráficos",
+                        "Mais informações sobre os níveis de gás",
                         size=20,
                         weight="bold",
                         color=a2,
@@ -98,11 +98,24 @@ def menu(page: ft.Page):
                 height=500,
                 content=ft.Column(
                     controls=[
-                        ft.Text("Aqui vão as informações detalhadas sobre os gráficos."),
+                        ft.Text("Observa-se que as emissões de metano na Bahia aumentaram ao longo do período, com uma significativa elevação entre 2010 e 2016, atingindo 190,9 Gg em 2016. Esse aumento pode estar relacionado a fatores como o crescimento da população, aumento da urbanização e a expansão das atividades industriais e de manejo de resíduos."),
+                        ft.Container(height=30),
+                        ft.Row(
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            controls=[
+                                ft.Image(
+                                        src="grafico_bahia2.png",  # Caminho local ou URL da imagem
+                                        width=700,  # Largura da imagem
+                                        height=400,  # Altura da imagem
+                                        fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
+                                    ),
+                            ]
+                        )
                     ],
                 ),
                 
-            )
+            ),
+            bgcolor=b,
         )
         page.dialog = graficos_dialog  # Definindo o Dialog na página
         graficos_dialog.open = True  # Abrindo o Dialog
@@ -122,7 +135,7 @@ def menu(page: ft.Page):
                         ),
                     ),
                     ft.Text(
-                        "Informações sobre Gráficos",
+                        value = "Mais informações sobre as temperaturas",
                         size=20,
                         weight="bold",
                         color=a2,
@@ -136,10 +149,24 @@ def menu(page: ft.Page):
                 height=500,
                 content=ft.Column(
                     controls=[
-                        ft.Text("Aqui vão as informações detalhadas sobre os Aterros Ronald."),
+
+                        ft.Text("Os dados de temperatura do solo em diferentes profundidades indicam que a temperatura média se mantém relativamente estável entre as camadas, com variações menores conforme a profundidade aumenta."),
+                        ft.Container(height=30),
+                        ft.Row(
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            controls=[
+                                ft.Image(
+                                        src="grafico_temp.png",  # Caminho local ou URL da imagem
+                                        width=700,  # Largura da imagem
+                                        height=400,  # Altura da imagem
+                                        fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
+                                    ),
+                            ]
+                        )
                     ]
                 )
-            )
+            ),
+            bgcolor=b,
         )
         
         page.dialog = aterros_dialog  # Definindo o Dialog na página
@@ -230,11 +257,50 @@ def menu(page: ft.Page):
 
         # Row com containers para "Gráficos" e "Gás"
         action_buttons = ft.Row(
-            alignment=ft.MainAxisAlignment.CENTER,
-            spacing=75,
-            controls=[
+        alignment=ft.MainAxisAlignment.CENTER,
+        spacing=75,
+        controls=[
+            ft.Container(
+                padding=ft.padding.all(10),
+                alignment=ft.alignment.center,
+                bgcolor=ft.colors.WHITE,
+                width=450,
+                height=205,
+                border_radius=10,
+                ink=True,
+                on_click=lambda e: abrir_graficosTP(),  
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    controls=[
+                        
+                        ft.Container(
+                            alignment=ft.alignment.center,  # Center the title
+                            content=ft.Text(
+                                value="20 g/m 5h2min",
+                                weight='bold',
+                                size=28,
+                                color=a2
+                                ),  # Text label
+                            ),
+                        ft.Image(
+                            src="gas.png",  # Path to the image
+                            width=450,  # Image width
+                            height=122,  # Image height
+                            fit=ft.ImageFit.CONTAIN,  # Fit the image within the container
+                        ),
+                        ft.Row(
+                            alignment=ft.MainAxisAlignment.END,
+                            controls=[
+                                ft.Text(value="Conteúdo meramente ilustrativo", size=8, text_align=ft.TextAlign.END, color=a2),
+                            ]
+                        ),
+                    ]
+                ),
+            ),
+                    
+                    
                 ft.Container(
-                    content=ft.Text("Gráficos"),
+                    
                     padding=ft.padding.all(10),
                     alignment=ft.alignment.center,
                     bgcolor=ft.colors.WHITE,
@@ -242,19 +308,39 @@ def menu(page: ft.Page):
                     height=200,
                     border_radius=10,
                     ink=True,
-                    on_click=lambda e: abrir_graficosTP()
+                    on_click=lambda e: abrir_GSgraficos(),
+                    content=ft.Column(
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    controls=[
+                        
+                        ft.Container(
+                            alignment=ft.alignment.center,  # Center the title
+                            content=ft.Text(
+                                value="PMGAS Aterros",
+                                weight='bold',
+                                size=30,
+                                color=a2
+                                ),  # Text label
+                            ),
+                        ft.Container(
+                            alignment=ft.alignment.center,  # Center the title
+                            content=ft.Text(
+                                value="26 °C",
+                                weight='bold',
+                                size=70,
+                                color=a2
+                                ),
+                        ),
+                        ft.Container(height=5),
+                        ft.Row(
+                            alignment=ft.MainAxisAlignment.END,
+                            controls=[
+                                ft.Text(value="Conteúdo meramente ilustrativo", size=8, text_align=ft.TextAlign.END, color=a2),
+                            ]
+                            ),
+                    ]
                 ),
-                ft.Container(
-                    content=ft.Text("Gás"),
-                    padding=ft.padding.all(10),
-                    alignment=ft.alignment.center,
-                    bgcolor=ft.colors.WHITE,
-                    width=450,
-                    height=200,
-                    border_radius=10,
-                    ink=True,
-                    on_click=lambda e: abrir_GSgraficos()
-                ),
+                )
             ]
         )
 
