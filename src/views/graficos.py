@@ -14,7 +14,7 @@ a1 = "#7BD8D9"
 a2 = "#04282D"
 b = "#FFFFFF"
 
-from models.Bgrafico import grs_ano
+from models.BgraficoGas import grs_ano
 # Função para a barra de navegação
 def navigation_bar(update_content, configuracoes_content, cadastros_content, graficos_content, perfil_content, menu_content):
     
@@ -102,7 +102,7 @@ def graficos(page: ft.Page):
                     border_radius=10,
                     padding=ft.padding.all(10),
                     width=1000,  # Largura do container
-                    height=625,
+                    height=1000,
                     content=ft.Column(
                         spacing=20,
                         alignment=ft.MainAxisAlignment.CENTER,  # Centraliza o conteúdo da coluna
@@ -124,10 +124,27 @@ def graficos(page: ft.Page):
                                 height=400,  # Altura da imagem
                                 fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
                             ),
+                            ft.Container(
+                            alignment=ft.alignment.top_left,  # Alinha o texto no canto superior esquerdo
+                            content=ft.Text(value='Gráficos - Temperatura por profundidade', weight='bold', size=18, color=a2)
+                        ),
+                            ft.Divider(
+                                height=1,
+                                color=ft.colors.with_opacity(0.25, a2),
+                                thickness=1
+                            ),
+                           
+                            ft.Image(
+                                src="grafico_temp2.png",  # Caminho local ou URL da imagem
+                                width=700,  # Largura da imagem
+                                height=400,  # Altura da imagem
+                                fit=ft.ImageFit.CONTAIN,  # Ajuste da imagem
+                            ),
                             
                         ],
                     ),
                 ),
             ],
         )
+    page.scroll = True
     return graf()
