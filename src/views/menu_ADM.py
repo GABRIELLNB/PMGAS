@@ -68,7 +68,7 @@ def menu_adm(page: ft.Page):
         from perfis_ADM import perfil_adm
         return perfil_adm(page)
     
-    def cad_content(nome_proprietario, nome_juridico, porte_empresa, cnpj, cep, area):
+    def cad_content(nome_proprietario, cnpj,cep, area, nome_juridico, porte_empresa):
         return ft.Container(
                     bgcolor=ft.colors.WHITE,
                     border_radius=10,
@@ -117,7 +117,7 @@ def menu_adm(page: ft.Page):
                                 controls=[
                                     ft.Icon(ft.icons.BUSINESS, color=ft.colors.with_opacity(0.9, a2), size=20),
                                     ft.Text(
-                                        value=f"Nome Jurídico: {nome_juridico}",
+                                        value=f"Natureza Jurídico: {nome_juridico}",
                                         style=ft.TextStyle(size=16, weight="bold", color=ft.colors.with_opacity(0.9, a2)),
                                     ),
                                 ],
