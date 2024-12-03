@@ -159,7 +159,6 @@ def grs_linha():
     # Mostrar o gráfico
     plt.show()
     
-grs_linha(),
 
 
 
