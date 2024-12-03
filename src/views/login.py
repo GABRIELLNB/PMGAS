@@ -73,7 +73,7 @@ def login(page: ft.Page):
                             value='Login',
                             weight='bold',
                             size=20,
-                            color=ft.colors.BLACK
+                            color=a2
                         ),
                         ft.Divider(
                             height=1,
@@ -178,6 +178,5 @@ def login(page: ft.Page):
         spacing=10,
         horizontal_alignment=ft.CrossAxisAlignment.CENTER
     )
-    
 
     return login
