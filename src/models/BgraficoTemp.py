@@ -108,6 +108,3 @@ def grs_profundidade():
 
         # Mostrar o gráfico
         plt.show()
-
-# Chamar a função
-grs_profundidade()
